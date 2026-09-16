@@ -2,7 +2,6 @@ package com.clase;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-
 public class Controller {
 
     @FXML private TextField nombre;

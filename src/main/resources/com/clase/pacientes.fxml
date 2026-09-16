@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefHeight="645.0" prefWidth="875.0" spacing="20.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clase.Controller">
+   <Label text="Xestión Pacientes" textAlignment="CENTER" textFill="#6b2e2e">
+      <font>
+         <Font name="System Bold" size="14.0" />
+      </font>
+      <opaqueInsets>
+         <Insets />
+      </opaqueInsets>
+      <VBox.margin>
+         <Insets top="30.0" />
+      </VBox.margin></Label>
+   <HBox alignment="CENTER" prefHeight="44.0" prefWidth="365.0">
+      <children>
+         <Label fx:id="lblpat" text="Apellidos:   " />
+         <TextField fx:id="apelpac">
+            <HBox.margin>
+               <Insets right="40.0" />
+            </HBox.margin>
+         </TextField>
+         <Label text="Nombre:   ">
+            <HBox.margin>
+               <Insets left="40.0" />
+            </HBox.margin>
+         </Label>
+         <TextField fx:id="nompat" />
+      </children>
+   </HBox>
+</VBox>

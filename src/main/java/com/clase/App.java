@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 /**
@@ -12,14 +11,12 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    private static Scene scene;
-
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(
-            getClass().getResource("/com/clase/primary.fxml")
+            getClass().getResource("/com/clase/pacientes.fxml")
         );
-            Scene scene = new Scene(loader.load(), 300, 200);
+            Scene scene = new Scene(loader.load(), 1280, 720);
             stage.setTitle("Controles Básicos");
             stage.setScene(scene);
             stage.show();
