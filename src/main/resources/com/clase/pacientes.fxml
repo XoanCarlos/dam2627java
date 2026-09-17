@@ -5,13 +5,16 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="645.0" prefWidth="875.0" spacing="20.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clase.Controller">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" spacing="20.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clase.PacientesController">
    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="902.0" style="-fx-background-color: #00A651;" text="Xestión Pacientes" textAlignment="CENTER">
       <font>
          <Font name="System Bold" size="14.0" />
@@ -24,7 +27,8 @@
       </VBox.margin>
       <effect>
          <Bloom />
-      </effect></Label>
+      </effect>
+   </Label>
    <HBox alignment="CENTER">
       <children>
          <Label text="DNI:">
@@ -32,15 +36,19 @@
                <Insets left="20.0" />
             </HBox.margin>
          </Label>
-         <TextField fx:id="dnipac" maxWidth="-Infinity" prefHeight="25.0" prefWidth="95.0">
+         <TextField fx:id="dnipac" alignment="CENTER" maxWidth="-Infinity" prefHeight="25.0" prefWidth="95.0">
             <HBox.margin>
                <Insets left="15.0" right="15.0" />
             </HBox.margin>
+            <effect>
+               <Blend />
+            </effect>
          </TextField>
          <Label fx:id="lblpat" text="Apellidos:   ">
             <HBox.margin>
                <Insets left="20.0" />
-            </HBox.margin></Label>
+            </HBox.margin>
+         </Label>
          <TextField fx:id="apelpac" maxWidth="-Infinity" prefHeight="25.0" prefWidth="205.0">
             <HBox.margin>
                <Insets right="40.0" />
@@ -54,7 +62,8 @@
          <TextField fx:id="nompat" maxWidth="-Infinity" prefHeight="25.0" prefWidth="189.0">
             <HBox.margin>
                <Insets right="10.0" />
-            </HBox.margin></TextField>
+            </HBox.margin>
+         </TextField>
       </children>
       <VBox.margin>
          <Insets left="14.0" />
@@ -132,7 +141,7 @@
    </HBox>
    <HBox alignment="CENTER" prefHeight="30.0" prefWidth="875.0">
       <children>
-         <Button fx:id="btnguardarpac" mnemonicParsing="false" text="  Guardar ">
+         <Button fx:id="btnguardarpac" mnemonicParsing="false" onAction="#guardarPaciente" text="  Guardar ">
             <HBox.margin>
                <Insets right="20.0" />
             </HBox.margin>
@@ -145,4 +154,6 @@
          <Button fx:id="btndelpac" mnemonicParsing="false" text="Eliminar" />
       </children>
    </HBox>
+   <TabPane />
+   <Separator prefWidth="200.0" />
 </VBox>
