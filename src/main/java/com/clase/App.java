@@ -17,7 +17,7 @@ public class App extends Application {
             getClass().getResource("/com/clase/pacientes.fxml")
         );
             Scene scene = new Scene(loader.load(), 1280, 720);
-            stage.setTitle("Controles Básicos");
+            stage.setTitle("Sanitarios Teis");
             stage.setScene(scene);
             stage.show();
     }
