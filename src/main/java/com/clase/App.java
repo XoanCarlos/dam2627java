@@ -16,7 +16,7 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(
             getClass().getResource("/com/clase/ventana.fxml")
         );
-            Scene scene = new Scene(loader.load(), 1280, 720);
+            Scene scene = new Scene(loader.load(), 1280, 800);
             stage.setTitle("Sanitarios Teis");
             stage.setScene(scene);
             stage.show();
