@@ -1,8 +1,17 @@
 package com.clase;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+
+
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -49,14 +58,12 @@ public class PacientesController implements Initializable {
                 comprobarMovil();
             }
         });
-    
-        // Datos de prueba para el ComboBox de provincias
-        cmbpac.getItems().addAll(
-                "A Coruña",
-                "Lugo",
-                "Ourense",
-                "Pontevedra"
-        );
+
+        //manejador de provinvicas, cargamos provincias y luego el evento
+        //que carga los municipios de cada provincia
+        cargarProvincias();
+
+        cmbpac.setOnAction(e -> cargarMunicipios());    
     }
 
     /// validar dni
@@ -136,6 +143,101 @@ public class PacientesController implements Initializable {
         return telefono.matches("[67][0-9]{8}");
     }
 
+
+    // cargamos provinias al lanzar le programa
+
+
+        
+private void cargarProvincias() {
+
+        // Abrimos el fichero JSON que está dentro de resources
+        // usamos la clase de java InputStrem que lee datos en este caso de un fichero
+
+        InputStream is = getClass()
+                .getResourceAsStream("/com/clase/data/municipios.json");
+
+    
+        // Leemos el JSON y lo convertimos en un objeto JsonObject
+        JsonObject json = JsonParser.parseReader(
+                new InputStreamReader(is)
+        ).getAsJsonObject();
+
+    
+        // Obtenemos el array "provincias" del JSON
+        JsonArray provincias = json.getAsJsonArray("provincias");
+
+        // Recorremos todas las provincias
+        for (var provincia : provincias) {
+
+            // Cada elemento del array es un objeto JSON
+            JsonObject p = provincia.getAsJsonObject();
+
+            // Obtenemos el nombre de la provincia
+            // y lo añadimos al ComboBox
+            cmbpac.getItems().add(
+                    p.get("nm").getAsString()
+            );
+        }
+
+    }
+ private void cargarMunicipios() {
+
+    // Abrimos de nuevo el fichero JSON
+    InputStream is = getClass()
+            .getResourceAsStream("/com/clase/data/municipios.json");
+
+    // Convertimos el contenido del fichero en un JsonObject
+    JsonObject json = JsonParser.parseReader(
+            new InputStreamReader(is)
+    ).getAsJsonObject();
+
+    // Obtenemos los dos arrays que necesitamos
+    JsonArray provincias = json.getAsJsonArray("provincias");
+    JsonArray municipios = json.getAsJsonArray("municipios");
+
+    // Obtenemos el nombre de la provincia seleccionada
+    String nombreProvincia = cmbpac.getValue();
+
+    // Variable donde guardaremos el código de la provincia
+    String idProvincia = "";
+
+    // Recorremos las provincias
+    for (var provincia : provincias) {
+
+        JsonObject p = provincia.getAsJsonObject();
+
+        // Comprobamos si es la provincia seleccionada
+        if (p.get("nm").getAsString().equals(nombreProvincia)) {
+
+            // Obtenemos su código
+            idProvincia = p.get("id").getAsString();
+
+            // Ya hemos encontrado la provincia
+            break;
+        }
+    }
+
+    // Eliminamos los municipios que pudiera haber
+    // de una selección anterior muy importante sino agrega municipios
+    locpac.getItems().clear();
+
+    // Recorremos todos los municipios
+    for (var municipio : municipios) {
+
+        JsonObject m = municipio.getAsJsonObject();
+
+        // Comprobamos los dos primeros caracteres del código
+        if (m.get("id").getAsString().startsWith(idProvincia)) {
+
+            // Si pertenecen a la provincia,
+            // añadimos su nombre al ComboBox
+            locpac.getItems().add(
+                    m.get("nm").getAsString()
+            );
+        }
+    }
+}
+    
     @FXML
     private void guardarPaciente() {
 
