@@ -3,6 +3,7 @@ package com.clase;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+
 import com.clase.modelo.Paciente;
 import com.clase.persistencia.PacienteDAOMySQL;
 

@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/* * Esta clase se encarga únicamente de establecer la conexión * entre 
-*nuestra aplicación Java y la base de datos MySQL. 
+/* * Esta clase se encarga únicamente de establecer la conexión entre 
+* nuestra aplicación Java y la base de datos MySQL. 
 * Es mejor tenerla separada del DAO porque así la conexión 
 * queda centralizada y los DAO solo se ocupan de trabajar 
-* con los datos. */ 
+* con los datos que le corresponden. */ 
 
 public class ConexionMySQL {
     private static final String URL = "jdbc:mysql://localhost:3306/bbdd";

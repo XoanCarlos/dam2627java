@@ -6,6 +6,6 @@ module com.clase {
     requires java.sql; //necesario para la conexión con MySQL
 
     opens com.clase to javafx.fxml, com.google.gson;
-    //opens com.clase.data to com.google.gson;
+    
     exports com.clase;
 }

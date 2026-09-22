@@ -5,7 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class PacienteDAOMySQL implements PacienteDAO {  // Implementación de la interfaz PacienteDAO para MySQL
+public class PacienteDAOMySQL implements PacienteDAO {  
+    // Implementación de la interfaz PacienteDAO para MySQL
 
     @Override
     public void guardarPaciente(Paciente paciente) {
