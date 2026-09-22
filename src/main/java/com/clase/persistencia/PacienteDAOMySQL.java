@@ -4,20 +4,23 @@ import com.clase.modelo.Paciente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
-public class PacienteDAOMySQL implements PacienteDAO {  
+public class PacienteDAOMySQL implements PacienteDAO {
     // Implementación de la interfaz PacienteDAO para MySQL
 
     @Override
     public void guardarPaciente(Paciente paciente) {
 
         String sql = "INSERT INTO pacientes "
-                   + "(dnipac, apelpac, nompac, movilpac, emailpac, nacpac, " 
-                   + " dirpac, propac, munipac) "
-                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "(dnipac, apelpac, nompac, movilpac, emailpac, nacpac, "
+                + " dirpac, propac, munipac) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conexion = ConexionMySQL.getConexion();
-             PreparedStatement ps = conexion.prepareStatement(sql)) {
+                PreparedStatement ps = conexion.prepareStatement(sql)) {
 
             ps.setString(1, paciente.getDni());
             ps.setString(2, paciente.getApellidos());
@@ -37,4 +40,41 @@ public class PacienteDAOMySQL implements PacienteDAO {
             System.out.println("Error al guardar el paciente: " + e.getMessage());
         }
     }
+
+    @Override
+    public List<Paciente> cargarPacientes() {
+
+        List<Paciente> pacientes = new ArrayList<>();
+
+        // Solo obtenemos los campos que necesitamos para la tabla
+        String sql = "SELECT dnipac, apelpac, nompac, movilpac, "
+                + "propac, munipac "
+                + "FROM pacientes "
+                + "ORDER BY apelpac, nompac";
+
+        try (Connection conexion = ConexionMySQL.getConexion();
+                PreparedStatement ps = conexion.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery()) {
+
+            // Recorremos las filas obtenidas
+            while (rs.next()) {
+
+                Paciente paciente = new Paciente(
+                        rs.getString("dnipac"),
+                        rs.getString("apelpac"),
+                        rs.getString("nompac"),
+                        rs.getString("movilpac"),
+                        rs.getString("propac"),
+                        rs.getString("munipac"));
+
+                pacientes.add(paciente);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al cargar los pacientes: " + e.getMessage());
+        }
+
+        return pacientes;
+    }
+
 }

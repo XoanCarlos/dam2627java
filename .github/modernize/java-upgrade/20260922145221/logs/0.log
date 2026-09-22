@@ -512,3 +512,231 @@
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- help:3.5.2:effective-pom (default-cli) @ dam2627java ---
+[INFO] Effective-POM written to: c:\Users\jcarl\dam2627java\effective-pom-724b4c98-d9c4-4bb8-ac22-8d361dedf7d7.log
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.636 s
+[INFO] Finished at: 2026-09-22T16:54:20+02:00
+[INFO] ------------------------------------------------------------------------
+2026-09-22T14:54:20.657Z [INFO] [BaseBuildTool] Found 1 modules: .
+2026-09-22T14:54:20.660Z [INFO] [BaseBuildTool] Finish counting Java and class files
+2026-09-22T14:54:20.660Z [INFO] [MavenBuildTool] Cleaning c:\Users\jcarl\dam2627java using Maven
+2026-09-22T14:54:20.661Z [INFO] [Environment] Running command (Java undefined): mvn clean -q -B -fn
+2026-09-22T14:54:22.660Z [INFO] [MavenBuildTool] Getting Java version of c:\Users\jcarl\dam2627java from pom.xml
+2026-09-22T14:54:22.661Z [INFO] [MavenBuildTool] Searching for pom.xml files in c:\Users\jcarl\dam2627java
+2026-09-22T14:54:22.661Z [INFO] [MavenBuildTool] Found pom.xml files: c:\Users\jcarl\dam2627java\pom.xml
+2026-09-22T14:54:22.662Z [INFO] [MavenBuildTool] Java version found in c:\Users\jcarl\dam2627java\pom.xml: 25
+2026-09-22T14:54:23.800Z [INFO] ---------------------prepare appmod-report-event----------------------
+2026-09-22T14:54:23.801Z [INFO] [Tool.prepareInvocation]({name: appmod-report-event, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "upgradeStepCompleted",
+  "status": "succeeded",
+  "phase": "execute",
+  "details": {
+    "stepNumber": 3,
+    "stepTitle": "Upgrade Maven Java Target",
+    "commitId": "948ee0b13a9676d49e8a042313f787dff20d7b46"
+  },
+  "message": "Maven Java 25 target changes compiled successfully."
+}}).
+2026-09-22T14:54:23.801Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-09-22T14:54:23.802Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "Report upgrade event"
+}}).
+2026-09-22T14:54:23.802Z [INFO] ----------------------prepared appmod-report-event----------------------
+2026-09-22T14:54:23.894Z [INFO] ----------------------invoke appmod-report-event----------------------
+2026-09-22T14:54:23.895Z [INFO] [Tool.invoke]({name: appmod-report-event, modelId: auto, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "upgradeStepCompleted",
+  "status": "succeeded",
+  "phase": "execute",
+  "details": {
+    "stepNumber": 3,
+    "stepTitle": "Upgrade Maven Java Target",
+    "commitId": "948ee0b13a9676d49e8a042313f787dff20d7b46"
+  },
+  "message": "Maven Java 25 target changes compiled successfully."
+}}).
+2026-09-22T14:54:23.895Z [INFO] [Tool.invoke] do invoke.
+2026-09-22T14:54:23.896Z [INFO] Project c:\Users\jcarl\dam2627java is a maven project, try to get java version from pom.xml
+2026-09-22T14:54:23.897Z [INFO] [Tool.invoke]({result: {
+  "message": "Event 'upgradeStepCompleted' reported!\nSession ID: 20260922145221,\nSession Dir: c:\\Users\\jcarl\\dam2627java\\.github\\modernize\\java-upgrade\\20260922145221"
+}}).
+2026-09-22T14:54:23.898Z [INFO] ----------------------invoked appmod-report-event----------------------
+2026-09-22T14:54:23.899Z [INFO] Project java version: 25
+2026-09-22T14:54:23.899Z [INFO] Maven project detected.
+2026-09-22T14:54:23.900Z [INFO] Build tool type: mvn
+2026-09-22T14:54:23.972Z [INFO] JDK: {
+  "name": "java",
+  "path": "C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+  "version": "25"
+}
+2026-09-22T14:54:23.975Z [INFO] Build tool: {
+  "name": "mvn",
+  "path": "C:\\tools\\apache-maven\\bin",
+  "version": "",
+  "source": "MAVEN_HOME,PATH"
+}
+2026-09-22T14:54:23.976Z [INFO] Project config: {
+  "buildTool": {
+    "path": "C:\\tools\\apache-maven\\bin",
+    "name": "mvn",
+    "version": "",
+    "source": "MAVEN_HOME,PATH"
+  },
+  "jdk": {
+    "path": "C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+    "name": "java",
+    "version": "25"
+  },
+  "name": "dam2627java",
+  "dir": "c:\\Users\\jcarl\\dam2627java"
+}
+2026-09-22T14:54:23.976Z [INFO] [MavenBuildTool] Getting Java version of c:\Users\jcarl\dam2627java from pom.xml
+2026-09-22T14:54:23.976Z [INFO] [MavenBuildTool] Searching for pom.xml files in c:\Users\jcarl\dam2627java
+2026-09-22T14:54:23.977Z [INFO] [MavenBuildTool] Getting all module coordinates of c:\Users\jcarl\dam2627java
+2026-09-22T14:54:23.977Z [INFO] [MavenBuildTool] Getting effective POMs of c:\Users\jcarl\dam2627java
+2026-09-22T14:54:23.979Z [INFO] [Environment] Running command (Java undefined): mvn help:effective-pom -Doutput=effective-pom-aaf89c2c-13b0-4c9a-9a86-19a23fbe77ba.log
+2026-09-22T14:54:24.004Z [INFO] [Environment] Running command (Java undefined): mvn dependency:tree -B
+[INFO] Scanning for projects...
+[INFO] Scanning for projects...
+2026-09-22T14:54:26.588Z [INFO] ---------------------prepare appmod-run-tests-for-java----------------------
+2026-09-22T14:54:26.589Z [INFO] [Tool.prepareInvocation]({name: appmod-run-tests-for-java, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "jdkPath": "C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+  "buildToolPath": "C:\\tools\\apache-maven\\bin"
+}}).
+2026-09-22T14:54:26.590Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-09-22T14:54:26.590Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "Run tests"
+}}).
+2026-09-22T14:54:26.591Z [INFO] ----------------------prepared appmod-run-tests-for-java----------------------
+[INFO] 
+[INFO] -----------------------< com.clase:dam2627java >------------------------
+[INFO] Building dam2627java 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+2026-09-22T14:54:26.692Z [INFO] ----------------------invoke appmod-run-tests-for-java----------------------
+2026-09-22T14:54:26.693Z [INFO] [Tool.invoke]({name: appmod-run-tests-for-java, modelId: auto, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "jdkPath": "C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+  "buildToolPath": "C:\\tools\\apache-maven\\bin"
+}}).
+2026-09-22T14:54:26.693Z [INFO] [Tool.invoke] do invoke.
+2026-09-22T14:54:26.694Z [INFO] Project C:\Users\jcarl\dam2627java is a maven project, try to get java version from pom.xml
+2026-09-22T14:54:26.697Z [INFO] Project java version: 25
+2026-09-22T14:54:26.697Z [INFO] Build tool type detected from path: mvn
+2026-09-22T14:54:26.698Z [INFO] Build tool type: mvn
+2026-09-22T14:54:26.698Z [INFO] JDK: {
+  "name": "java",
+  "path": "C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+  "version": "25"
+}
+2026-09-22T14:54:26.699Z [INFO] Build tool: {
+  "name": "mvn",
+  "path": "C:\\tools\\apache-maven\\bin",
+  "version": ""
+}
+2026-09-22T14:54:26.700Z [INFO] Project config: {
+  "buildTool": {
+    "path": "C:\\tools\\apache-maven\\bin",
+    "name": "mvn",
+    "version": ""
+  },
+  "jdk": {
+    "path": "C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+    "name": "java",
+    "version": "25"
+  },
+  "name": "dam2627java",
+  "dir": "C:\\Users\\jcarl\\dam2627java"
+}
+2026-09-22T14:54:26.701Z [INFO] Building project before running tests...
+2026-09-22T14:54:26.701Z [INFO] [MavenBuildTool] Getting build errors of C:\Users\jcarl\dam2627java using Maven
+2026-09-22T14:54:26.704Z [INFO] [Environment] Running command (Java undefined): mvn clean test-compile -q -B -fn -Dossindex.skip=true -Dlicense.skip=true -Dcheckstyle.skip=true -DskipLicenseCheck=true -DskipCheckStyle=true -Dpmd.skip=true -Denforcer.skip=true -Drat.skip=true
+[INFO] 
+[INFO] --- dependency:3.7.0:tree (default-cli) @ dam2627java ---
+[INFO] 
+[INFO] -----------------------< com.clase:dam2627java >------------------------
+[INFO] Building dam2627java 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- help:3.5.2:effective-pom (default-cli) @ dam2627java ---
+[INFO] Effective-POM written to: c:\Users\jcarl\dam2627java\effective-pom-aaf89c2c-13b0-4c9a-9a86-19a23fbe77ba.log
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.941 s
+[INFO] Finished at: 2026-09-22T16:54:27+02:00
+[INFO] ------------------------------------------------------------------------
+2026-09-22T14:54:27.455Z [INFO] [MavenBuildTool] Found pom.xml files: c:\Users\jcarl\dam2627java\pom.xml
+2026-09-22T14:54:27.457Z [INFO] [MavenBuildTool] Java version found in c:\Users\jcarl\dam2627java\pom.xml: 25
+[INFO] com.clase:dam2627java:jar:1.0-SNAPSHOT
+[INFO] +- com.mysql:mysql-connector-j:jar:9.3.0:compile
+[INFO] |  \- com.google.protobuf:protobuf-java:jar:4.29.0:compile
+[INFO] +- com.google.code.gson:gson:jar:2.10.1:compile
+[INFO] +- org.openjfx:javafx-controls:jar:13:compile
+[INFO] |  +- org.openjfx:javafx-controls:jar:win:13:compile
+[INFO] |  \- org.openjfx:javafx-graphics:jar:13:compile
+[INFO] |     +- org.openjfx:javafx-graphics:jar:win:13:compile
+[INFO] |     \- org.openjfx:javafx-base:jar:13:compile
+[INFO] |        \- org.openjfx:javafx-base:jar:win:13:compile
+[INFO] \- org.openjfx:javafx-fxml:jar:13:compile
+[INFO]    \- org.openjfx:javafx-fxml:jar:win:13:compile
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.461 s
+[INFO] Finished at: 2026-09-22T16:54:28+02:00
+[INFO] ------------------------------------------------------------------------
+2026-09-22T14:54:28.925Z [INFO] [MavenBuildTool] Successfully got dependency tree of c:\Users\jcarl\dam2627java
+2026-09-22T14:54:28.926Z [INFO] [MavenBuildTool] Getting Java version of c:\Users\jcarl\dam2627java from pom.xml
+2026-09-22T14:54:28.926Z [INFO] [MavenBuildTool] Searching for pom.xml files in c:\Users\jcarl\dam2627java
+2026-09-22T14:54:28.927Z [INFO] [MavenBuildTool] Found pom.xml files: c:\Users\jcarl\dam2627java\pom.xml
+2026-09-22T14:54:28.928Z [INFO] [MavenBuildTool] Java version found in c:\Users\jcarl\dam2627java\pom.xml: 25
+[ERROR] COMPILATION ERROR : 
+[ERROR] /C:/Users/jcarl/dam2627java/src/main/java/com/clase/PacientesController.java:[234,5] javafx.fxml.FXML is not a repeatable annotation interface
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.1:compile (default-compile) on project dam2627java: Compilation failure
+[ERROR] /C:/Users/jcarl/dam2627java/src/main/java/com/clase/PacientesController.java:[234,5] javafx.fxml.FXML is not a repeatable annotation interface
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
+2026-09-22T14:54:30.525Z [INFO] [MavenBuildTool] parsing compilation errors.
+2026-09-22T14:54:30.526Z [INFO] [MavenBuildTool] Getting all module coordinates of C:\Users\jcarl\dam2627java
+2026-09-22T14:54:30.527Z [INFO] [MavenBuildTool] Getting effective POMs of C:\Users\jcarl\dam2627java
+2026-09-22T14:54:30.528Z [INFO] [Environment] Running command (Java undefined): mvn help:effective-pom -Doutput=effective-pom-f7d5730b-f96b-4ad7-a71a-a08069e3da3e.log
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.clase:dam2627java >------------------------
+[INFO] Building dam2627java 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- help:3.5.2:effective-pom (default-cli) @ dam2627java ---
+[INFO] Effective-POM written to: C:\Users\jcarl\dam2627java\effective-pom-f7d5730b-f96b-4ad7-a71a-a08069e3da3e.log
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.616 s
+[INFO] Finished at: 2026-09-22T16:54:32+02:00
+[INFO] ------------------------------------------------------------------------
+2026-09-22T14:54:32.599Z [INFO] [BaseBuildTool] Found 1 modules: .
+2026-09-22T14:54:32.603Z [INFO] [BaseBuildTool] Finish counting Java and class files
+2026-09-22T14:54:32.603Z [INFO] [MavenBuildTool] Cleaning C:\Users\jcarl\dam2627java using Maven
+2026-09-22T14:54:32.604Z [INFO] [Environment] Running command (Java undefined): mvn clean -q -B -fn
+2026-09-22T14:54:34.185Z [ERROR] Cannot run tests due to build errors.
+2026-09-22T14:54:34.186Z [ERROR] Failed running tests: UserError: Cannot run tests due to build errors:
+ - javafx.fxml.FXML is not a repeatable annotation interface
+2026-09-22T14:54:34.186Z [ERROR] [Tool.invoke] error occurs when invoking tool appmod-run-tests-for-java: UserError: Failed running tests: UserError: Cannot run tests due to build errors:
+ - javafx.fxml.FXML is not a repeatable annotation interface.
+2026-09-22T14:54:34.186Z [INFO] ----------------------invoked appmod-run-tests-for-java----------------------

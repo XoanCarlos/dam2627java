@@ -21,6 +21,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+//import javafx.scene.control.cell.PropertyValueFactory para usarlo en la tabla de pacientes
+import javafx.beans.property.SimpleStringProperty;
+import java.util.List;
+
 public class PacientesController implements Initializable {
 
     @FXML
@@ -32,8 +38,58 @@ public class PacientesController implements Initializable {
     @FXML
     private Button btnguardarpac, btnmodifpac, btndelpac;
 
+    // componetes de la tabla
+
+    @FXML
+    private TableView<Paciente> tablaPacientes;
+
+    @FXML
+    private TableColumn<Paciente, String> coldnipac;
+
+    @FXML
+    private TableColumn<Paciente, String> colapelpac;
+
+    @FXML
+    private TableColumn<Paciente, String> colnompac;
+
+    @FXML
+    private TableColumn<Paciente, String> colmovilpac;
+
+    @FXML
+    private TableColumn<Paciente, String> colpropac;
+
+    @FXML
+    private TableColumn<Paciente, String> colmunipac;
+
+    // implementación de los métodos de la interfaz Initializable
+
+    // Este método se llama automáticamente cuando se carga la vista FXML
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        // Configuramos las columnas de la tabla para que muestren los datos de los
+        // pacientes
+
+        coldnipac.setCellValueFactory( // para la columna dni coge el valor el dni del paciente y lo muestra en la
+                                       // tabla
+                data -> new SimpleStringProperty(data.getValue().getDni()));
+
+        colapelpac.setCellValueFactory(
+                data -> new SimpleStringProperty(data.getValue().getApellidos()));
+
+        colnompac.setCellValueFactory(
+                data -> new SimpleStringProperty(data.getValue().getNombre()));
+
+        colmovilpac.setCellValueFactory(
+                data -> new SimpleStringProperty(data.getValue().getMovil()));
+
+        colpropac.setCellValueFactory(
+                data -> new SimpleStringProperty(data.getValue().getProvincia()));
+
+        colmunipac.setCellValueFactory(
+                data -> new SimpleStringProperty(data.getValue().getMunicipio()));
+
         dnipac.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) {
                 comprobarDni();
@@ -65,6 +121,8 @@ public class PacientesController implements Initializable {
         cargarProvincias();
 
         propac.setOnAction(e -> cargarMunicipios());
+
+        cargarPacientes();
     }
 
     /// validar dni
@@ -231,11 +289,25 @@ public class PacientesController implements Initializable {
     }
 
     @FXML
+    private void cleanFormpac() {
+        dnipac.setText("");
+        apelpac.setText("");
+        nompac.setText("");
+        movilpac.setText("");
+        emailpac.setText("");
+        nacpac.setValue(null);
+        dirpac.setText("");
+        propac.getSelectionModel().clearSelection();
+        munipac.getSelectionModel().clearSelection();
+    }
+
+    @FXML
     private void guardarPaciente() {
-        // Comprobamos que se haya introducido la fecha 
-        if (nacpac.getValue() == null) { 
-            System.out.println("Debes introducir la fecha de nacimiento"); 
-            return; }
+        // Comprobamos que se haya introducido la fecha
+        if (nacpac.getValue() == null) {
+            System.out.println("Debes introducir la fecha de nacimiento");
+            return;
+        }
 
         String dni = dnipac.getText();
         String apellidos = apelpac.getText();
@@ -245,20 +317,31 @@ public class PacientesController implements Initializable {
         String email = emailpac.getText();
         String direccion = dirpac.getText();
         String provincia = propac.getValue();
-        String municipio = munipac.getValue(); 
-        // Creamos el objeto Paciente 
-        Paciente paciente = new Paciente( 
-         dni,
-         apellidos, 
-         nombre, 
-         movil, 
-         email, fechaNacimiento, 
-         direccion,
-         provincia, 
-         municipio ); 
+        String municipio = munipac.getValue();
+        // Creamos el objeto Paciente
+        Paciente paciente = new Paciente(
+                dni,
+                apellidos,
+                nombre,
+                movil,
+                email, fechaNacimiento,
+                direccion,
+                provincia,
+                municipio);
 
-         // Creamos el DAO y guardamos el paciente en MySQL 
+        // Creamos el DAO y guardamos el paciente en MySQL
         PacienteDAOMySQL dao = new PacienteDAOMySQL();
-        dao.guardarPaciente(paciente); 
-        }
+        dao.guardarPaciente(paciente);
+
+        cargarPacientes();
     }
+
+    @FXML
+    private void cargarPacientes() { 
+        // Creamos el DAO 
+        PacienteDAOMySQL dao = new PacienteDAOMySQL(); 
+        // Obtenemos los pacientes de la base de datos 
+        List<Paciente> pacientes = dao.cargarPacientes(); 
+        // Los mostramos en la tabla 
+        tablaPacientes.getItems().setAll(pacientes); }
+}
