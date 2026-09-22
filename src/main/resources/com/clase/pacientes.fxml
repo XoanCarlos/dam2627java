@@ -10,6 +10,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -64,6 +66,15 @@
                <Insets right="10.0" />
             </HBox.margin>
          </TextField>
+         <Button contentDisplay="CENTER" mnemonicParsing="false" prefHeight="29.0" prefWidth="33.0">
+            <graphic>
+               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../img/recargar.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
       </children>
       <VBox.margin>
          <Insets left="14.0" />
