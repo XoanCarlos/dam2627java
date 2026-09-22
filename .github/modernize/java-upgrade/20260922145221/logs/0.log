@@ -1,0 +1,514 @@
+2026-09-22T14:52:21.278Z [INFO] ----------------------invoke appmod-list-jdks----------------------
+2026-09-22T14:52:21.280Z [INFO] [Tool.invoke]({name: appmod-list-jdks, modelId: auto, input: {
+  "sessionId": "",
+  "additionalSearchPaths": [
+    "C:\\Program Files\\Java",
+    "C:\\Program Files\\Eclipse Adoptium"
+  ],
+  "version": "",
+  "projectPath": "c:\\Users\\jcarl\\dam2627java"
+}}).
+2026-09-22T14:52:21.281Z [INFO] [Tool.invoke] do invoke.
+2026-09-22T14:52:21.491Z [INFO] [Tool.invoke]({result: {
+  "message": "We found following jdks in your system:\n\n1. Java 21.0.11\n   📁 Path: C:\\Program Files\\Java\\jdk-21.0.11\\bin\n   🏷️ Source: PATH,JAVA_HOME\n\n2. Java 26.0.1\n   📁 Path: C:\\Program Files\\Java\\jdk-26.0.1\\bin\n   🏷️ Source: others\n\nTotal: 2 JDK installation(s) found"
+}}).
+2026-09-22T14:52:21.492Z [INFO] ----------------------invoked appmod-list-jdks----------------------
+2026-09-22T14:52:21.905Z [INFO] ----------------------invoke appmod-list-mavens----------------------
+2026-09-22T14:52:21.906Z [INFO] [Tool.invoke]({name: appmod-list-mavens, modelId: auto, input: {
+  "sessionId": "",
+  "additionalSearchPaths": [
+    "C:\\Users\\jcarl\\dam2627java"
+  ],
+  "includeVersion": true,
+  "projectPath": "c:\\Users\\jcarl\\dam2627java"
+}}).
+2026-09-22T14:52:21.907Z [INFO] [Tool.invoke] do invoke.
+2026-09-22T14:52:29.504Z [INFO] [Tool.invoke]({result: {
+  "message": "We found following maven installations in your system:\n\n1. Maven 3.9.16\n   📁 Path: C:\\tools\\apache-maven\\bin\n   🏷️ Source: MAVEN_HOME,PATH\n\nTotal: 1 Maven installation(s) found"
+}}).
+2026-09-22T14:52:29.505Z [INFO] ----------------------invoked appmod-list-mavens----------------------
+2026-09-22T14:52:32.441Z [INFO] ---------------------prepare appmod-report-event----------------------
+2026-09-22T14:52:32.443Z [INFO] [Tool.prepareInvocation]({name: appmod-report-event, input: {
+  "sessionId": "",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "precheckCompleted",
+  "status": "succeeded",
+  "phase": "precheck",
+  "details": {
+    "components": [
+      {
+        "name": "jdk",
+        "baseVersion": "11",
+        "targetVersion": "25"
+      }
+    ]
+  },
+  "message": "Maven Java project detected; upgrading Java release from 11 to Java 25 LTS."
+}}).
+2026-09-22T14:52:32.443Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-09-22T14:52:32.444Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "Report upgrade event"
+}}).
+2026-09-22T14:52:32.445Z [INFO] ----------------------prepared appmod-report-event----------------------
+2026-09-22T14:52:32.622Z [INFO] ----------------------invoke appmod-report-event----------------------
+2026-09-22T14:52:32.622Z [INFO] [Tool.invoke]({name: appmod-report-event, modelId: auto, input: {
+  "sessionId": "",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "precheckCompleted",
+  "status": "succeeded",
+  "phase": "precheck",
+  "details": {
+    "components": [
+      {
+        "name": "jdk",
+        "baseVersion": "11",
+        "targetVersion": "25"
+      }
+    ]
+  },
+  "message": "Maven Java project detected; upgrading Java release from 11 to Java 25 LTS."
+}}).
+2026-09-22T14:52:32.623Z [INFO] [Tool.invoke] do invoke.
+2026-09-22T14:52:32.626Z [INFO] Project c:\Users\jcarl\dam2627java is a maven project, try to get java version from pom.xml
+2026-09-22T14:52:32.628Z [INFO] [Tool.invoke]({result: {
+  "message": "Event 'precheckCompleted' reported!\nSession ID: 20260922145221,\nSession Dir: c:\\Users\\jcarl\\dam2627java\\.github\\modernize\\java-upgrade\\20260922145221"
+}}).
+2026-09-22T14:52:32.629Z [INFO] ----------------------invoked appmod-report-event----------------------
+2026-09-22T14:52:32.634Z [INFO] Project java version: 11
+2026-09-22T14:52:32.636Z [INFO] Maven project detected.
+2026-09-22T14:52:32.637Z [INFO] Build tool type: mvn
+2026-09-22T14:52:32.781Z [INFO] JDK: undefined
+2026-09-22T14:52:32.782Z [ERROR] Failed to detect or resolve JDK for the project at c:\Users\jcarl\dam2627java.
+2026-09-22T14:52:32.784Z [WARN] [ReportEventTool] Full project info unavailable, attempting lightweight fallback: UserError: Failed to detect or resolve JDK for the project at c:\Users\jcarl\dam2627java. Please ensure JDK 11 is installed and properly configured on the machine.
+2026-09-22T14:52:32.787Z [INFO] Maven project detected.
+2026-09-22T14:52:32.788Z [INFO] Project c:\Users\jcarl\dam2627java is a maven project, try to get java version from pom.xml
+2026-09-22T14:52:36.727Z [INFO] ---------------------prepare appmod-report-event----------------------
+2026-09-22T14:52:36.729Z [INFO] [Tool.prepareInvocation]({name: appmod-report-event, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "planGenerationStarted",
+  "status": "succeeded",
+  "phase": "plan",
+  "message": "Starting Java 25 LTS upgrade plan generation."
+}}).
+2026-09-22T14:52:36.730Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-09-22T14:52:36.732Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "Report upgrade event"
+}}).
+2026-09-22T14:52:36.734Z [INFO] ----------------------prepared appmod-report-event----------------------
+2026-09-22T14:52:36.873Z [INFO] ----------------------invoke appmod-report-event----------------------
+2026-09-22T14:52:36.874Z [INFO] [Tool.invoke]({name: appmod-report-event, modelId: auto, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "planGenerationStarted",
+  "status": "succeeded",
+  "phase": "plan",
+  "message": "Starting Java 25 LTS upgrade plan generation."
+}}).
+2026-09-22T14:52:36.875Z [INFO] [Tool.invoke] do invoke.
+2026-09-22T14:52:36.876Z [INFO] [Tool.invoke]({result: {
+  "message": "Event 'planGenerationStarted' reported!\nSession ID: 20260922145221,\nSession Dir: c:\\Users\\jcarl\\dam2627java\\.github\\modernize\\java-upgrade\\20260922145221"
+}}).
+2026-09-22T14:52:36.877Z [INFO] ----------------------invoked appmod-report-event----------------------
+2026-09-22T14:53:09.570Z [INFO] ---------------------prepare appmod-report-event----------------------
+2026-09-22T14:53:09.571Z [INFO] [Tool.prepareInvocation]({name: appmod-report-event, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "planReviewed",
+  "status": "succeeded",
+  "phase": "plan",
+  "message": "Plan covers JDK 25 provisioning, Maven compiler target changes, validation, and CVE review."
+}}).
+2026-09-22T14:53:09.571Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-09-22T14:53:09.572Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "Report upgrade event"
+}}).
+2026-09-22T14:53:09.572Z [INFO] ----------------------prepared appmod-report-event----------------------
+2026-09-22T14:53:09.662Z [INFO] ----------------------invoke appmod-report-event----------------------
+2026-09-22T14:53:09.663Z [INFO] [Tool.invoke]({name: appmod-report-event, modelId: auto, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "planReviewed",
+  "status": "succeeded",
+  "phase": "plan",
+  "message": "Plan covers JDK 25 provisioning, Maven compiler target changes, validation, and CVE review."
+}}).
+2026-09-22T14:53:09.663Z [INFO] [Tool.invoke] do invoke.
+2026-09-22T14:53:09.665Z [INFO] [Tool.invoke]({result: {
+  "message": "Event 'planReviewed' reported!\nSession ID: 20260922145221,\nSession Dir: c:\\Users\\jcarl\\dam2627java\\.github\\modernize\\java-upgrade\\20260922145221"
+}}).
+2026-09-22T14:53:09.666Z [INFO] ----------------------invoked appmod-report-event----------------------
+2026-09-22T14:53:11.332Z [INFO] ---------------------prepare appmod-confirm-upgrade-plan----------------------
+2026-09-22T14:53:11.333Z [INFO] [Tool.prepareInvocation]({name: appmod-confirm-upgrade-plan, input: {
+  "sessionId": "20260922145221",
+  "autoExecute": true
+}}).
+2026-09-22T14:53:11.333Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-09-22T14:53:11.335Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "Auto-executing [upgrade plan](file:///c:/Users/jcarl/dam2627java/.github/modernize/java-upgrade/20260922145221/plan.md)"
+}}).
+2026-09-22T14:53:11.335Z [INFO] ----------------------prepared appmod-confirm-upgrade-plan----------------------
+2026-09-22T14:53:11.554Z [INFO] ----------------------invoke appmod-confirm-upgrade-plan----------------------
+2026-09-22T14:53:11.555Z [INFO] [Tool.invoke]({name: appmod-confirm-upgrade-plan, modelId: auto, input: {
+  "sessionId": "20260922145221",
+  "autoExecute": true
+}}).
+2026-09-22T14:53:11.555Z [INFO] [Tool.invoke] do invoke.
+2026-09-22T14:53:11.555Z [INFO] Upgrade plan confirmed successfully.
+2026-09-22T14:53:11.556Z [INFO] [Tool.invoke]({result: {
+  "message": "Generated plan is reviewed and confirmed by the user! the upgrade process will start now."
+}}).
+2026-09-22T14:53:11.556Z [INFO] ----------------------invoked appmod-confirm-upgrade-plan----------------------
+2026-09-22T14:53:16.152Z [INFO] ---------------------prepare appmod-install-jdk----------------------
+2026-09-22T14:53:16.152Z [INFO] [Tool.prepareInvocation]({name: appmod-install-jdk, input: {
+  "sessionId": "20260922145221",
+  "version": "25",
+  "dest": "C:\\Users\\jcarl\\.jdk"
+}}).
+2026-09-22T14:53:16.153Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-09-22T14:53:16.546Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "Download and install JDK"
+}}).
+2026-09-22T14:53:16.547Z [INFO] ----------------------prepared appmod-install-jdk----------------------
+2026-09-22T14:53:16.592Z [INFO] ----------------------invoke appmod-install-jdk----------------------
+2026-09-22T14:53:16.593Z [INFO] [Tool.invoke]({name: appmod-install-jdk, modelId: auto, input: {
+  "sessionId": "20260922145221",
+  "version": "25",
+  "dest": "C:\\Users\\jcarl\\.jdk"
+}}).
+2026-09-22T14:53:16.593Z [INFO] [Tool.invoke] do invoke.
+2026-09-22T14:53:43.627Z [INFO] [Tool.invoke]({result: {
+  "result": {
+    "name": "java",
+    "path": "C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+    "version": "25.0.2"
+  },
+  "message": "JDK 25 is installed at C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+  "telemetry": {
+    "tool": "JDK",
+    "version": "25"
+  }
+}}).
+2026-09-22T14:53:43.627Z [INFO] ----------------------invoked appmod-install-jdk----------------------
+2026-09-22T14:53:47.516Z [INFO] ---------------------prepare appmod-report-event----------------------
+2026-09-22T14:53:47.516Z [INFO] [Tool.prepareInvocation]({name: appmod-report-event, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "environmentSetup",
+  "status": "succeeded",
+  "phase": "execute",
+  "details": {
+    "jdkPath": "C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+    "buildToolPath": "C:\\tools\\apache-maven\\bin"
+  },
+  "message": "JDK 25 installed and Maven 3.9.16 is available."
+}}).
+2026-09-22T14:53:47.516Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-09-22T14:53:47.516Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "Report upgrade event"
+}}).
+2026-09-22T14:53:47.517Z [INFO] ----------------------prepared appmod-report-event----------------------
+2026-09-22T14:53:47.548Z [INFO] ----------------------invoke appmod-report-event----------------------
+2026-09-22T14:53:47.548Z [INFO] [Tool.invoke]({name: appmod-report-event, modelId: auto, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "environmentSetup",
+  "status": "succeeded",
+  "phase": "execute",
+  "details": {
+    "jdkPath": "C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+    "buildToolPath": "C:\\tools\\apache-maven\\bin"
+  },
+  "message": "JDK 25 installed and Maven 3.9.16 is available."
+}}).
+2026-09-22T14:53:47.548Z [INFO] [Tool.invoke] do invoke.
+2026-09-22T14:53:47.549Z [INFO] Project c:\Users\jcarl\dam2627java is a maven project, try to get java version from pom.xml
+2026-09-22T14:53:47.550Z [INFO] [Tool.invoke]({result: {
+  "message": "Event 'environmentSetup' reported!\nSession ID: 20260922145221,\nSession Dir: c:\\Users\\jcarl\\dam2627java\\.github\\modernize\\java-upgrade\\20260922145221"
+}}).
+2026-09-22T14:53:47.550Z [INFO] ----------------------invoked appmod-report-event----------------------
+2026-09-22T14:53:47.551Z [INFO] Project java version: 11
+2026-09-22T14:53:47.552Z [INFO] Build tool type detected from path: mvn
+2026-09-22T14:53:47.552Z [INFO] Build tool type: mvn
+2026-09-22T14:53:47.553Z [INFO] JDK: {
+  "name": "java",
+  "path": "C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+  "version": "11"
+}
+2026-09-22T14:53:47.553Z [INFO] Build tool: {
+  "name": "mvn",
+  "path": "C:\\tools\\apache-maven\\bin",
+  "version": ""
+}
+2026-09-22T14:53:47.553Z [INFO] Project config: {
+  "buildTool": {
+    "path": "C:\\tools\\apache-maven\\bin",
+    "name": "mvn",
+    "version": ""
+  },
+  "jdk": {
+    "path": "C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+    "name": "java",
+    "version": "11"
+  },
+  "name": "dam2627java",
+  "dir": "c:\\Users\\jcarl\\dam2627java"
+}
+2026-09-22T14:54:00.140Z [INFO] ---------------------prepare appmod-report-event----------------------
+2026-09-22T14:54:00.141Z [INFO] [Tool.prepareInvocation]({name: appmod-report-event, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "planExecutionStarted",
+  "status": "succeeded",
+  "phase": "execute",
+  "message": "Upgrade execution started on appmod/java-upgrade-20260922145221."
+}}).
+2026-09-22T14:54:00.141Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-09-22T14:54:00.141Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "Report upgrade event"
+}}).
+2026-09-22T14:54:00.141Z [INFO] ----------------------prepared appmod-report-event----------------------
+2026-09-22T14:54:00.177Z [INFO] ----------------------invoke appmod-report-event----------------------
+2026-09-22T14:54:00.178Z [INFO] [Tool.invoke]({name: appmod-report-event, modelId: auto, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "planExecutionStarted",
+  "status": "succeeded",
+  "phase": "execute",
+  "message": "Upgrade execution started on appmod/java-upgrade-20260922145221."
+}}).
+2026-09-22T14:54:00.178Z [INFO] [Tool.invoke] do invoke.
+2026-09-22T14:54:00.255Z [INFO] [Tool.invoke]({result: {
+  "message": "Event 'planExecutionStarted' reported!\nSession ID: 20260922145221,\nSession Dir: c:\\Users\\jcarl\\dam2627java\\.github\\modernize\\java-upgrade\\20260922145221"
+}}).
+2026-09-22T14:54:00.255Z [INFO] ----------------------invoked appmod-report-event----------------------
+2026-09-22T14:54:02.490Z [INFO] ---------------------prepare appmod-report-event----------------------
+2026-09-22T14:54:02.490Z [INFO] [Tool.prepareInvocation]({name: appmod-report-event, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "baselineSetup",
+  "status": "skipped",
+  "phase": "execute",
+  "message": "JDK 11 is not installed, so the pre-upgrade baseline cannot be executed."
+}}).
+2026-09-22T14:54:02.491Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-09-22T14:54:02.491Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "Report upgrade event"
+}}).
+2026-09-22T14:54:02.491Z [INFO] ----------------------prepared appmod-report-event----------------------
+2026-09-22T14:54:02.527Z [INFO] ----------------------invoke appmod-report-event----------------------
+2026-09-22T14:54:02.527Z [INFO] [Tool.invoke]({name: appmod-report-event, modelId: auto, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "baselineSetup",
+  "status": "skipped",
+  "phase": "execute",
+  "message": "JDK 11 is not installed, so the pre-upgrade baseline cannot be executed."
+}}).
+2026-09-22T14:54:02.527Z [INFO] [Tool.invoke] do invoke.
+2026-09-22T14:54:02.528Z [INFO] [Tool.invoke]({result: {
+  "message": "Event 'baselineSetup' reported!\nSession ID: 20260922145221,\nSession Dir: c:\\Users\\jcarl\\dam2627java\\.github\\modernize\\java-upgrade\\20260922145221"
+}}).
+2026-09-22T14:54:02.528Z [INFO] ----------------------invoked appmod-report-event----------------------
+2026-09-22T14:54:04.657Z [INFO] ---------------------prepare appmod-report-event----------------------
+2026-09-22T14:54:04.658Z [INFO] [Tool.prepareInvocation]({name: appmod-report-event, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "upgradeStepStarted",
+  "status": "succeeded",
+  "phase": "execute",
+  "details": {
+    "stepNumber": 3,
+    "stepTitle": "Upgrade Maven Java Target"
+  },
+  "message": "Applying the Java 25 compiler configuration."
+}}).
+2026-09-22T14:54:04.658Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-09-22T14:54:04.659Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "Report upgrade event"
+}}).
+2026-09-22T14:54:04.659Z [INFO] ----------------------prepared appmod-report-event----------------------
+2026-09-22T14:54:04.706Z [INFO] ----------------------invoke appmod-report-event----------------------
+2026-09-22T14:54:04.707Z [INFO] [Tool.invoke]({name: appmod-report-event, modelId: auto, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "upgradeStepStarted",
+  "status": "succeeded",
+  "phase": "execute",
+  "details": {
+    "stepNumber": 3,
+    "stepTitle": "Upgrade Maven Java Target"
+  },
+  "message": "Applying the Java 25 compiler configuration."
+}}).
+2026-09-22T14:54:04.707Z [INFO] [Tool.invoke] do invoke.
+2026-09-22T14:54:04.707Z [INFO] [Tool.invoke]({result: {
+  "message": "Event 'upgradeStepStarted' reported!\nSession ID: 20260922145221,\nSession Dir: c:\\Users\\jcarl\\dam2627java\\.github\\modernize\\java-upgrade\\20260922145221"
+}}).
+2026-09-22T14:54:04.708Z [INFO] ----------------------invoked appmod-report-event----------------------
+2026-09-22T14:54:09.782Z [INFO] ---------------------prepare appmod-build-java-project----------------------
+2026-09-22T14:54:09.782Z [INFO] [Tool.prepareInvocation]({name: appmod-build-java-project, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "jdkPath": "C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+  "buildToolPath": "C:\\tools\\apache-maven\\bin"
+}}).
+2026-09-22T14:54:09.782Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-09-22T14:54:09.782Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "Build project"
+}}).
+2026-09-22T14:54:09.782Z [INFO] ----------------------prepared appmod-build-java-project----------------------
+2026-09-22T14:54:09.814Z [INFO] ----------------------invoke appmod-build-java-project----------------------
+2026-09-22T14:54:09.814Z [INFO] [Tool.invoke]({name: appmod-build-java-project, modelId: auto, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "jdkPath": "C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+  "buildToolPath": "C:\\tools\\apache-maven\\bin"
+}}).
+2026-09-22T14:54:09.814Z [INFO] [Tool.invoke] do invoke.
+2026-09-22T14:54:09.814Z [INFO] Project C:\Users\jcarl\dam2627java is a maven project, try to get java version from pom.xml
+2026-09-22T14:54:09.815Z [INFO] Project java version: 25
+2026-09-22T14:54:09.815Z [INFO] Build tool type detected from path: mvn
+2026-09-22T14:54:09.815Z [INFO] Build tool type: mvn
+2026-09-22T14:54:09.815Z [INFO] JDK: {
+  "name": "java",
+  "path": "C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+  "version": "25"
+}
+2026-09-22T14:54:09.815Z [INFO] Build tool: {
+  "name": "mvn",
+  "path": "C:\\tools\\apache-maven\\bin",
+  "version": ""
+}
+2026-09-22T14:54:09.816Z [INFO] Project config: {
+  "buildTool": {
+    "path": "C:\\tools\\apache-maven\\bin",
+    "name": "mvn",
+    "version": ""
+  },
+  "jdk": {
+    "path": "C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+    "name": "java",
+    "version": "25"
+  },
+  "name": "dam2627java",
+  "dir": "C:\\Users\\jcarl\\dam2627java"
+}
+2026-09-22T14:54:09.816Z [INFO] [MavenBuildTool] Getting build errors of C:\Users\jcarl\dam2627java using Maven
+2026-09-22T14:54:09.817Z [INFO] [Environment] Running command (Java undefined): mvn clean test-compile -q -B -fn -Dossindex.skip=true -Dlicense.skip=true -Dcheckstyle.skip=true -DskipLicenseCheck=true -DskipCheckStyle=true -Dpmd.skip=true -Denforcer.skip=true -Drat.skip=true
+2026-09-22T14:54:12.393Z [INFO] [MavenBuildTool] parsing compilation errors.
+2026-09-22T14:54:12.394Z [INFO] [MavenBuildTool] Getting all module coordinates of C:\Users\jcarl\dam2627java
+2026-09-22T14:54:12.394Z [INFO] [MavenBuildTool] Getting effective POMs of C:\Users\jcarl\dam2627java
+2026-09-22T14:54:12.396Z [INFO] [Environment] Running command (Java undefined): mvn help:effective-pom -Doutput=effective-pom-64718eef-b6d6-4e57-82ea-2df3e5bd842f.log
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.clase:dam2627java >------------------------
+[INFO] Building dam2627java 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- help:3.5.2:effective-pom (default-cli) @ dam2627java ---
+[INFO] Effective-POM written to: C:\Users\jcarl\dam2627java\effective-pom-64718eef-b6d6-4e57-82ea-2df3e5bd842f.log
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  0.777 s
+[INFO] Finished at: 2026-09-22T16:54:14+02:00
+[INFO] ------------------------------------------------------------------------
+2026-09-22T14:54:14.885Z [INFO] [BaseBuildTool] Found 1 modules: .
+2026-09-22T14:54:14.890Z [INFO] [BaseBuildTool] Finish counting Java and class files
+2026-09-22T14:54:14.890Z [INFO] [MavenBuildTool] Cleaning C:\Users\jcarl\dam2627java using Maven
+2026-09-22T14:54:14.891Z [INFO] [Environment] Running command (Java undefined): mvn clean -q -B -fn
+2026-09-22T14:54:16.468Z [INFO] [MavenBuildTool] Getting Java version of C:\Users\jcarl\dam2627java from pom.xml
+2026-09-22T14:54:16.468Z [INFO] [MavenBuildTool] Searching for pom.xml files in C:\Users\jcarl\dam2627java
+2026-09-22T14:54:16.468Z [INFO] Build succeeded! There are no build errors in the project.
+2026-09-22T14:54:16.469Z [INFO] [MavenBuildTool] Found pom.xml files: C:\Users\jcarl\dam2627java\pom.xml
+2026-09-22T14:54:16.469Z [INFO] [Tool.invoke]({result: {
+  "message": "Build succeeded! There are no build errors in the project.",
+  "result": {
+    "numOfJavaFiles": 7,
+    "numOfClassFiles": 7,
+    "modulesBuildResult": {
+      ".": {
+        "numOfJavaFiles": 7,
+        "numOfClassFiles": 7
+      }
+    },
+    "errors": [],
+    "command": "mvn clean test-compile -q -B -fn -Dossindex.skip=true -Dlicense.skip=true -Dcheckstyle.skip=true -DskipLicenseCheck=true -DskipCheckStyle=true -Dpmd.skip=true -Denforcer.skip=true -Drat.skip=true"
+  },
+  "telemetry": {
+    "result": "succeeded"
+  }
+}}).
+2026-09-22T14:54:16.469Z [INFO] ----------------------invoked appmod-build-java-project----------------------
+2026-09-22T14:54:16.471Z [INFO] [MavenBuildTool] Java version found in C:\Users\jcarl\dam2627java\pom.xml: 25
+2026-09-22T14:54:18.532Z [INFO] ---------------------prepare appmod-report-event----------------------
+2026-09-22T14:54:18.532Z [INFO] [Tool.prepareInvocation]({name: appmod-report-event, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "buildCompleted",
+  "status": "succeeded",
+  "phase": "execute",
+  "message": "Java 25 main and test compilation succeeded with Maven 3.9.16."
+}}).
+2026-09-22T14:54:18.532Z [INFO] [Tool.prepareInvocation] do prepare invocation.
+2026-09-22T14:54:18.533Z [INFO] [Tool.prepareInvocation]({result: {
+  "invocationMessage": "Report upgrade event"
+}}).
+2026-09-22T14:54:18.533Z [INFO] ----------------------prepared appmod-report-event----------------------
+2026-09-22T14:54:18.570Z [INFO] ----------------------invoke appmod-report-event----------------------
+2026-09-22T14:54:18.570Z [INFO] [Tool.invoke]({name: appmod-report-event, modelId: auto, input: {
+  "sessionId": "20260922145221",
+  "projectPath": "C:\\Users\\jcarl\\dam2627java",
+  "event": "buildCompleted",
+  "status": "succeeded",
+  "phase": "execute",
+  "message": "Java 25 main and test compilation succeeded with Maven 3.9.16."
+}}).
+2026-09-22T14:54:18.570Z [INFO] [Tool.invoke] do invoke.
+2026-09-22T14:54:18.571Z [INFO] Project c:\Users\jcarl\dam2627java is a maven project, try to get java version from pom.xml
+2026-09-22T14:54:18.571Z [INFO] [Tool.invoke]({result: {
+  "message": "Event 'buildCompleted' reported!\nSession ID: 20260922145221,\nSession Dir: c:\\Users\\jcarl\\dam2627java\\.github\\modernize\\java-upgrade\\20260922145221"
+}}).
+2026-09-22T14:54:18.571Z [INFO] ----------------------invoked appmod-report-event----------------------
+2026-09-22T14:54:18.572Z [INFO] Project java version: 25
+2026-09-22T14:54:18.572Z [INFO] Maven project detected.
+2026-09-22T14:54:18.572Z [INFO] Build tool type: mvn
+2026-09-22T14:54:18.604Z [INFO] JDK: {
+  "name": "java",
+  "path": "C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+  "version": "25"
+}
+2026-09-22T14:54:18.607Z [INFO] Build tool: {
+  "name": "mvn",
+  "path": "C:\\tools\\apache-maven\\bin",
+  "version": "",
+  "source": "MAVEN_HOME,PATH"
+}
+2026-09-22T14:54:18.607Z [INFO] Project config: {
+  "buildTool": {
+    "path": "C:\\tools\\apache-maven\\bin",
+    "name": "mvn",
+    "version": "",
+    "source": "MAVEN_HOME,PATH"
+  },
+  "jdk": {
+    "path": "C:\\Users\\jcarl\\.jdk\\jdk-25.0.2(1)\\bin",
+    "name": "java",
+    "version": "25"
+  },
+  "name": "dam2627java",
+  "dir": "c:\\Users\\jcarl\\dam2627java"
+}
+2026-09-22T14:54:18.607Z [INFO] [MavenBuildTool] Getting all module coordinates of c:\Users\jcarl\dam2627java
+2026-09-22T14:54:18.607Z [INFO] [MavenBuildTool] Getting effective POMs of c:\Users\jcarl\dam2627java
+2026-09-22T14:54:18.608Z [INFO] [Environment] Running command (Java undefined): mvn help:effective-pom -Doutput=effective-pom-724b4c98-d9c4-4bb8-ac22-8d361dedf7d7.log
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------< com.clase:dam2627java >------------------------
+[INFO] Building dam2627java 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- help:3.5.2:effective-pom (default-cli) @ dam2627java ---
