@@ -17,9 +17,9 @@ public class App extends Application {
             getClass().getResource("/com/clase/ventana.fxml")
         );
             Scene scene = new Scene(loader.load(), 1280, 800);
-            stage.setTitle("Sanitarios Teis");
+            stage.setTitle("Sanidad Teis");
             stage.setScene(scene);
-            //stage.setMaximized(true);
+            stage.setMaximized(true);
             stage.show();
     }
     public static void main(String[] args) {

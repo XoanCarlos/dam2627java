@@ -38,8 +38,7 @@ public class PacientesController implements Initializable {
     @FXML
     private Button btnguardarpac, btnmodifpac, btndelpac;
 
-    // componetes de la tabla
-
+    // componentes de la tabla
     @FXML
     private TableView<Paciente> tablaPacientes;
 
@@ -300,7 +299,7 @@ public class PacientesController implements Initializable {
         propac.getSelectionModel().clearSelection();
         munipac.getSelectionModel().clearSelection();
     }
-
+    // guardar pacientes en la bbdd
     @FXML
     private void guardarPaciente() {
         // Comprobamos que se haya introducido la fecha
@@ -336,6 +335,7 @@ public class PacientesController implements Initializable {
         cargarPacientes();
     }
 
+    // cargar pacientes en la tabla 
     @FXML
     private void cargarPacientes() { 
         // Creamos el DAO 

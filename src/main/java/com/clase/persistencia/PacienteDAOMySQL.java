@@ -40,7 +40,7 @@ public class PacienteDAOMySQL implements PacienteDAO {
             System.out.println("Error al guardar el paciente: " + e.getMessage());
         }
     }
-
+    // seleccionar pacientes de la bbdd
     @Override
     public List<Paciente> cargarPacientes() {
 
