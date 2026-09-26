@@ -115,6 +115,17 @@ public class PacientesController implements Initializable {
             }
         });
 
+        //carga un paciente al seleccionarlo en la tabla en el formulario para poder modificarlo o eliminarlo
+
+        tablaPacientes.getSelectionModel()
+        .selectedItemProperty()
+        .addListener((observable, anterior, nuevo) -> {
+
+            if (nuevo != null) {
+                cargarPaciente();
+            }
+        });
+
         // manejador de provinvicas, cargamos provincias y luego el evento
         // que carga los municipios de cada provincia
         cargarProvincias();
@@ -344,4 +355,41 @@ public class PacientesController implements Initializable {
         List<Paciente> pacientes = dao.cargarPacientes(); 
         // Los mostramos en la tabla 
         tablaPacientes.getItems().setAll(pacientes); }
-}
+
+    @FXML 
+   private void cargarPaciente() {
+
+        Paciente seleccionado = tablaPacientes
+                .getSelectionModel()
+                .getSelectedItem();
+
+        if (seleccionado == null) {
+            return;
+        }
+
+        PacienteDAOMySQL dao = new PacienteDAOMySQL();
+
+        Paciente paciente = dao.buscarPaciente(seleccionado.getDni());
+
+        if (paciente == null) {
+            return;
+        }
+
+        dnipac.setText(paciente.getDni());
+        apelpac.setText(paciente.getApellidos());
+        nompac.setText(paciente.getNombre());
+        movilpac.setText(paciente.getMovil());
+
+        emailpac.setText(paciente.getEmail());
+
+        nacpac.setValue(paciente.getNacimiento());
+
+        dirpac.setText(paciente.getDireccion());
+
+        propac.setValue(paciente.getProvincia());
+
+        cargarMunicipios();
+
+        munipac.setValue(paciente.getMunicipio());
+            } 
+    }
