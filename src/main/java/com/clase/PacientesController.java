@@ -60,6 +60,8 @@ public class PacientesController implements Initializable {
     @FXML
     private TableColumn<Paciente, String> colmunipac;
 
+    boolean pacienteexiste = false;
+
     // implementación de los métodos de la interfaz Initializable
 
     // Este método se llama automáticamente cuando se carga la vista FXML
@@ -125,6 +127,8 @@ public class PacientesController implements Initializable {
                 cargarPaciente();
             }
         });
+
+
 
         // manejador de provinvicas, cargamos provincias y luego el evento
         // que carga los municipios de cada provincia
@@ -338,10 +342,16 @@ public class PacientesController implements Initializable {
                 direccion,
                 provincia,
                 municipio);
-
-        // Creamos el DAO y guardamos el paciente en MySQL
-        PacienteDAOMySQL dao = new PacienteDAOMySQL();
-        dao.guardarPaciente(paciente);
+        if (pacienteexiste) {
+            // Si el paciente ya existe, lo actualizamos en la base de datos
+            PacienteDAOMySQL dao = new PacienteDAOMySQL();
+            dao.modificarPaciente(paciente.getDni(), paciente);
+            pacienteexiste = false;
+        } else {
+            // Si el paciente no existe, lo guardamos en la base de datos
+            PacienteDAOMySQL dao = new PacienteDAOMySQL();
+            dao.guardarPaciente(paciente);
+        }
 
         cargarPacientes();
     }
@@ -365,6 +375,8 @@ public class PacientesController implements Initializable {
 
         if (seleccionado == null) {
             return;
+        } else {
+            pacienteexiste = true;
         }
 
         PacienteDAOMySQL dao = new PacienteDAOMySQL();
