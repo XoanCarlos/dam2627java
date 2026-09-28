@@ -36,7 +36,7 @@ public class PacientesController implements Initializable {
     @FXML
     private ComboBox<String> propac, munipac;
     @FXML
-    private Button btnguardarpac, btnmodifpac, btndelpac;
+    private Button btnguardarpac, btndelpac;
 
     // componentes de la tabla
     @FXML
@@ -352,7 +352,7 @@ public class PacientesController implements Initializable {
             PacienteDAOMySQL dao = new PacienteDAOMySQL();
             dao.guardarPaciente(paciente);
         }
-
+        //recargar la tabla con el nuevo paciente
         cargarPacientes();
     }
 

@@ -181,14 +181,14 @@
          <Insets bottom="20.0" left="10.0" right="10.0" />
       </VBox.margin>
       <children>
-         <TableView fx:id="tablaPacientes" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="1100.0" style="-fx-background-color: #FFFFF4; -fx-border-color: #EDE8D0; -fx-border-width: 5px;">
+         <TableView fx:id="tablaPacientes" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="1100.0" style="-fx-background-color: #FFFFF4; -fx-border-color: #7FE3D6; -fx-border-width: 5px;">
            <columns>
              <TableColumn fx:id="coldnipac" editable="false" prefWidth="140.0" style="-fx-alignment: CENTER;" text="DNI" />
              <TableColumn fx:id="colapelpac" editable="false" prefWidth="200.0" text="APELLIDOS" />
-               <TableColumn fx:id="colnompac" editable="false" prefWidth="200.0" text="NOMBRE" />
-               <TableColumn fx:id="colmovilpac" editable="false" prefWidth="100.0" style="-fx-alignment: CENTER;" text="MOVIL" />
-               <TableColumn fx:id="colpropac" editable="false" prefWidth="150.0" text="PROVINCIA" />
-               <TableColumn fx:id="colmunipac" prefWidth="240.0" text="MUNICIPIO" />
+             <TableColumn fx:id="colnompac" editable="false" prefWidth="200.0" text="NOMBRE" />
+             <TableColumn fx:id="colmovilpac" editable="false" prefWidth="100.0" style="-fx-alignment: CENTER;" text="MOVIL" />
+             <TableColumn fx:id="colpropac" editable="false" prefWidth="150.0" text="PROVINCIA" />
+             <TableColumn fx:id="colmunipac" prefWidth="240.0" text="MUNICIPIO" />
            </columns>
             <opaqueInsets>
                <Insets />

@@ -15,7 +15,8 @@ public class PacienteDAOMySQL implements PacienteDAO {
     public void guardarPaciente(Paciente paciente) {
 
         String sql = "INSERT INTO pacientes "
-                + "(dnipac, apelpac, nompac, movilpac, emailpac, nacpac, "
+                + "(dnipac, apelpac, nompac, movilpac, "
+                + " emailpac, nacpac, "
                 + " dirpac, propac, munipac) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -73,7 +74,7 @@ public class PacienteDAOMySQL implements PacienteDAO {
         } catch (SQLException e) {
             System.out.println("Error al cargar los pacientes: " + e.getMessage());
         }
-
+        //devuelve los pacientes que hay en la bbdd
         return pacientes;
     }
 
@@ -81,9 +82,9 @@ public class PacienteDAOMySQL implements PacienteDAO {
     public Paciente buscarPaciente(String dni) {
 
         String sql = "SELECT dnipac, apelpac, nompac, movilpac, "
-                + "emailpac, nacpac, dirpac, propac, munipac "
-                + "FROM pacientes "
-                + "WHERE dnipac = ?";
+                + " emailpac, nacpac, dirpac, propac, munipac "
+                + " FROM pacientes "
+                + " WHERE dnipac = ?";
 
         try (Connection conexion = ConexionMySQL.getConexion();
                 PreparedStatement ps = conexion.prepareStatement(sql)) {
