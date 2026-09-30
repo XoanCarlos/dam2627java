@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="800.0" maxWidth="1280.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" spacing="20.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clase.PacientesController">
+<VBox alignment="TOP_CENTER" maxHeight="800.0" maxWidth="1280.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" spacing="20.0" xmlns="http://javafx.com/javafx/13" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.clase.PacientesController">
    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="902.0" style="-fx-background-color: #7FE3D6; -fx-text-fill: #FFFFFF;" text="Xestión Pacientes" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
       <font>
          <Font name="System Bold" size="14.0" />
@@ -171,7 +171,7 @@
                <Insets right="20.0" />
             </HBox.margin>
          </Button>
-         <Button fx:id="btndelpac" mnemonicParsing="false" text="Eliminar" />
+         <Button fx:id="btndelpac" mnemonicParsing="false" onAction="#eliminarPaciente" text="Eliminar" />
       </children>
    </HBox>
    <TabPane />

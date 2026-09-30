@@ -154,4 +154,22 @@ public class PacienteDAOMySQL implements PacienteDAO {
         }
     }
 
+    public void eliminarPaciente(String dni) {
+
+        String sql = "DELETE FROM pacientes WHERE dnipac = ?";
+
+        try (Connection conexion = ConexionMySQL.getConexion();
+                PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setString(1, dni);
+
+            ps.executeUpdate();
+
+            System.out.println("Paciente eliminado correctamente.");
+
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar el paciente: " + e.getMessage());
+        }
+    }   
+
 }
