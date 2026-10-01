@@ -117,7 +117,8 @@ public class PacientesController implements Initializable {
             }
         });
 
-        //carga un paciente al seleccionarlo en la tabla en el formulario para poder modificarlo o eliminarlo
+        //carga un paciente al seleccionarlo en la tabla 
+        // en el formulario para poder modificarlo o eliminarlo
 
         tablaPacientes.getSelectionModel()
         .selectedItemProperty()
@@ -127,8 +128,6 @@ public class PacientesController implements Initializable {
                 cargarPaciente();
             }
         });
-
-
 
         // manejador de provinvicas, cargamos provincias y luego el evento
         // que carga los municipios de cada provincia
@@ -317,12 +316,6 @@ public class PacientesController implements Initializable {
     // guardar pacientes en la bbdd
     @FXML
     private void guardarPaciente() {
-        // Comprobamos que se haya introducido la fecha
-        if (nacpac.getValue() == null) {
-            System.out.println("Debes introducir la fecha de nacimiento");
-            return;
-        }
-
         String dni = dnipac.getText();
         String apellidos = apelpac.getText();
         String nombre = nompac.getText();
@@ -346,7 +339,7 @@ public class PacientesController implements Initializable {
             // Si el paciente ya existe, lo actualizamos en la base de datos
             PacienteDAOMySQL dao = new PacienteDAOMySQL();
             dao.modificarPaciente(paciente.getDni(), paciente);
-            pacienteexiste = false;
+            pacienteexiste = false; //importante
         } else {
             // Si el paciente no existe, lo guardamos en la base de datos
             PacienteDAOMySQL dao = new PacienteDAOMySQL();
@@ -366,14 +359,13 @@ public class PacientesController implements Initializable {
         // Los mostramos en la tabla 
         tablaPacientes.getItems().setAll(pacientes); }
 
-    @FXML 
+   @FXML 
    private void cargarPaciente() {
-
-        Paciente seleccionado = tablaPacientes
+        Paciente pacienteselect = tablaPacientes
                 .getSelectionModel()
-                .getSelectedItem();
+                .getSelectedItem(); //carga los datos de la fila seleccionado
 
-        if (seleccionado == null) {
+        if (pacienteselect == null) {
             return;
         } else {
             pacienteexiste = true;
@@ -381,7 +373,7 @@ public class PacientesController implements Initializable {
 
         PacienteDAOMySQL dao = new PacienteDAOMySQL();
 
-        Paciente paciente = dao.buscarPaciente(seleccionado.getDni());
+        Paciente paciente = dao.buscarPaciente(pacienteselect.getDni());
 
         if (paciente == null) {
             return;
@@ -391,17 +383,11 @@ public class PacientesController implements Initializable {
         apelpac.setText(paciente.getApellidos());
         nompac.setText(paciente.getNombre());
         movilpac.setText(paciente.getMovil());
-
         emailpac.setText(paciente.getEmail());
-
         nacpac.setValue(paciente.getNacimiento());
-
         dirpac.setText(paciente.getDireccion());
-
         propac.setValue(paciente.getProvincia());
-
-        cargarMunicipios();
-
+        //cargarMunicipios();  comprobar esto
         munipac.setValue(paciente.getMunicipio());
             } 
     
@@ -420,5 +406,29 @@ public class PacientesController implements Initializable {
 
         // Recargamos la tabla de pacientes
         cargarPacientes();
-    }        
+    }
+@FXML 
+private void buscaPacdni() {
+
+    PacienteDAOMySQL dao = new PacienteDAOMySQL();
+
+    Paciente paciente = dao.buscaPacdni(dnipac.getText());
+    
+    if (paciente == null){
+        return;
+    } else {
+        pacienteexiste = true;
+    }
+
+    dnipac.setText(paciente.getDni());
+    apelpac.setText(paciente.getApellidos());
+    nompac.setText(paciente.getNombre());
+    movilpac.setText(paciente.getMovil());
+    emailpac.setText(paciente.getEmail());
+    nacpac.setValue(paciente.getNacimiento());
+    dirpac.setText(paciente.getDireccion());
+    propac.setValue(paciente.getProvincia());
+    //cargarMunicipios();  comprobar esto
+    munipac.setValue(paciente.getMunicipio());
+    }  
 }

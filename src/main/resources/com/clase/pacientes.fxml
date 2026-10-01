@@ -48,6 +48,15 @@
                <Blend />
             </effect>
          </TextField>
+         <Button fx:id="btnBuscarPac" mnemonicParsing="false" onAction="#buscaPacdni">
+            <graphic>
+               <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../../img/lupa.png" />
+                  </image>
+               </ImageView>
+            </graphic>
+         </Button>
          <Label fx:id="lblpat" text="Apellidos:   ">
             <HBox.margin>
                <Insets left="20.0" />

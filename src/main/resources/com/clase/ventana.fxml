@@ -5,40 +5,25 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<AnchorPane
-        maxHeight="800.0"
-        maxWidth="1280.0"
-        minHeight="-Infinity"
-        minWidth="-Infinity"
-        prefHeight="800.0"
-        prefWidth="1280.0"
-        xmlns="http://javafx.com/javafx/26"
-        xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="800.0" maxWidth="1280.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
 
    <children>
 
-      <TabPane
-            prefHeight="800.0"
-            prefWidth="1280.0"
-            tabClosingPolicy="UNAVAILABLE"
-            AnchorPane.bottomAnchor="0.0"
-            AnchorPane.leftAnchor="0.0"
-            AnchorPane.rightAnchor="0.0"
-            AnchorPane.topAnchor="0.0">
+      <TabPane prefHeight="800.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
          <tabs>
 
             <Tab fx:id="panpacientes" text="Pacientes">
                <content>
                   <StackPane alignment="CENTER">
-                     <fx:include source="pacientes.fxml"/>
+                     <fx:include source="pacientes.fxml" />
                   </StackPane>
                </content>
             </Tab>
 
             <Tab fx:id="pandoctores" text="Doctores">
                <content>
-                  <AnchorPane/>
+                  <AnchorPane />
                </content>
             </Tab>
 

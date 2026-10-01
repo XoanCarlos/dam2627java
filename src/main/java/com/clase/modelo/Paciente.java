@@ -1,5 +1,4 @@
 package com.clase.modelo;
-
 import java.time.LocalDate;
 
 public class Paciente {

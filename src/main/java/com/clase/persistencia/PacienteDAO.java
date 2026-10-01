@@ -7,7 +7,8 @@ import java.util.List;
 public interface PacienteDAO {
  void guardarPaciente(Paciente paciente);
  List<Paciente> cargarPacientes();
+ void eliminarPaciente(String dni);
  Paciente buscarPaciente(String dni);
  void modificarPaciente(String dni, Paciente paciente);
- void eliminarPaciente(String dni);
+ Paciente buscaPacdni(String dni);
 }
