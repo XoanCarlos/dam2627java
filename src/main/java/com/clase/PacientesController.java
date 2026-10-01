@@ -138,7 +138,9 @@ public class PacientesController implements Initializable {
         cargarPacientes();
     }
 
-    /// validar dni
+
+    // FUNCIONES AUXILIARES DE PACIENTES
+    
     @FXML
     private void comprobarDni() {
         String dni = dnipac.getText().trim().toUpperCase();
@@ -313,7 +315,9 @@ public class PacientesController implements Initializable {
         propac.getSelectionModel().clearSelection();
         munipac.getSelectionModel().clearSelection();
     }
-    // guardar pacientes en la bbdd
+   
+   
+    // FUNCIONES CON BASE DE DATOS
     @FXML
     private void guardarPaciente() {
         String dni = dnipac.getText();
@@ -406,29 +410,29 @@ public class PacientesController implements Initializable {
 
         // Recargamos la tabla de pacientes
         cargarPacientes();
+        }
+    @FXML 
+    private void buscaPacdni() {
+
+        PacienteDAOMySQL dao = new PacienteDAOMySQL();
+
+        Paciente paciente = dao.buscaPacdni(dnipac.getText());
+        
+        if (paciente == null){
+            return;
+        } else {
+            pacienteexiste = true;
+        }
+
+        dnipac.setText(paciente.getDni());
+        apelpac.setText(paciente.getApellidos());
+        nompac.setText(paciente.getNombre());
+        movilpac.setText(paciente.getMovil());
+        emailpac.setText(paciente.getEmail());
+        nacpac.setValue(paciente.getNacimiento());
+        dirpac.setText(paciente.getDireccion());
+        propac.setValue(paciente.getProvincia());
+        //cargarMunicipios();  comprobar esto
+        munipac.setValue(paciente.getMunicipio());
+        }  
     }
-@FXML 
-private void buscaPacdni() {
-
-    PacienteDAOMySQL dao = new PacienteDAOMySQL();
-
-    Paciente paciente = dao.buscaPacdni(dnipac.getText());
-    
-    if (paciente == null){
-        return;
-    } else {
-        pacienteexiste = true;
-    }
-
-    dnipac.setText(paciente.getDni());
-    apelpac.setText(paciente.getApellidos());
-    nompac.setText(paciente.getNombre());
-    movilpac.setText(paciente.getMovil());
-    emailpac.setText(paciente.getEmail());
-    nacpac.setValue(paciente.getNacimiento());
-    dirpac.setText(paciente.getDireccion());
-    propac.setValue(paciente.getProvincia());
-    //cargarMunicipios();  comprobar esto
-    munipac.setValue(paciente.getMunicipio());
-    }  
-}
