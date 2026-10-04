@@ -30,4 +30,15 @@ public class VentanaController {
          stage.initModality(Modality.APPLICATION_MODAL);
          stage.show();     
     }
+    
+    @FXML
+    private void abrirDir() {
+        try {
+            new ProcessBuilder("explorer.exe").start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
