@@ -1,7 +1,7 @@
 package com.clase.modelo;
 
 public class Doctor {
-    private String iddoc;
+    private Integer iddoc;
     private String apeldoc;
     private String nomdoc;
     private String movildoc;
@@ -24,7 +24,7 @@ public class Doctor {
     }
     
     // modelo para la tabla de docientes
-    public Doctor(String iddoc, String apeldoc, String nomdoc,
+    public Doctor(Integer iddoc, String apeldoc, String nomdoc,
             String movildoc, String espedoc) {
 
         this.iddoc = iddoc;
@@ -34,11 +34,11 @@ public class Doctor {
         this.espedoc = espedoc;
     }
 
-    public String getID() {
+    public Integer getID() {
         return iddoc;
     }
 
-    public void setID(String iddoc) {
+    public void setID(Integer iddoc) {
         this.iddoc = iddoc;
     }
 

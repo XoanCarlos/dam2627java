@@ -1,95 +1,95 @@
-package com.clase;
+    package com.clase;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+    import com.google.gson.JsonArray;
+    import com.google.gson.JsonObject;
+    import com.google.gson.JsonParser;
 
-import com.clase.modelo.Doctor;
-import com.clase.persistencia.DoctorDAOMySQL;
+    import com.clase.modelo.Doctor;
+    import com.clase.persistencia.DoctorDAOMySQL;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+    import java.net.URL;
+    import java.util.ResourceBundle;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
+    import java.io.InputStream;
+    import java.io.InputStreamReader;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ComboBox;
+    import javafx.fxml.FXML;
+    import javafx.fxml.Initializable;
+    import javafx.scene.control.Button;
+    import javafx.scene.control.RadioButton;
+    import javafx.scene.control.TextField;
+    import javafx.scene.control.ComboBox;
 
-import javafx.scene.control.TableView;
-import javafx.scene.control.TableColumn;
-//import javafx.scene.control.cell.PropertyValueFactory //para usarlo en la tabla de Doctors
-import javafx.beans.property.SimpleStringProperty;
-import java.util.List;
+    import javafx.scene.control.TableView;
+    import javafx.scene.control.TableColumn;
+    import javafx.beans.property.SimpleObjectProperty;
+    import javafx.scene.control.cell.PropertyValueFactory; //para usarlo en la tabla de Doctors
+    import javafx.beans.property.SimpleStringProperty;
+    import java.util.List;
 
-public class DoctoresController implements Initializable {
+    public class DoctoresController implements Initializable {
 
-    @FXML
-    private TextField iddoc, apeldoc, nomdoc, movildoc, emaildoc;
-    @FXML
-    private ComboBox<String> espedoc;
-    @FXML
-    private Button btnguardardoc, btndeldoc;
-    @FXML 
-    private RadioButton coledocno, coledocsi;   
+        @FXML
+        private TextField iddoc, apeldoc, nomdoc, movildoc, emaildoc;
+        @FXML
+        private ComboBox<String> espedoc;
+        @FXML
+        private Button btnguardardoc, btndeldoc;
+        @FXML 
+        private RadioButton coledocno, coledocsi;   
 
-    // componentes de la tabla
-    @FXML
-    private TableView<Doctor> tablaDoctores;
+        // componentes de la tabla
+        @FXML
+        private TableView<Doctor> tablaDoctores;
 
-    @FXML
-    private TableColumn<Doctor, String> coliddoc;
+        @FXML
+        private TableColumn<Doctor, Integer> coliddoc;
 
-    @FXML
-    private TableColumn<Doctor, String> colapeldoc;
+        @FXML
+        private TableColumn<Doctor, String> colapeldoc;
 
-    @FXML
-    private TableColumn<Doctor, String> colnomdoc;
+        @FXML
+        private TableColumn<Doctor, String> colnomdoc;
 
-    @FXML
-    private TableColumn<Doctor, String> colmovildoc   ;
+        @FXML
+        private TableColumn<Doctor, String> colmovildoc;
 
-    @FXML
-    private TableColumn<Doctor, String> colespedoc;
+        @FXML
+        private TableColumn<Doctor, String> colespedoc;
 
-    boolean doctorexiste = false;
+        boolean doctorexiste = false;
 
-    // implementación de los métodos de la interfaz Initializable
+        // implementación de los métodos de la interfaz Initializable
 
-    // Este método se llama automáticamente cuando se carga la vista FXML
+        // Este método se llama automáticamente cuando se carga la vista FXML
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+        @Override
+        public void initialize(URL url, ResourceBundle rb) {
 
-        // Configuramos las columnas de la tabla para que muestren los datos de los
-        // Doctors
+            // Configuramos las columnas de la tabla para que muestren los datos de los
+            // Doctors
 
-        coliddoc.setCellValueFactory( // para la columna id coge el valor el id del Doctor y lo muestra en la
-                                       // tabla
-                data -> new SimpleStringProperty(data.getValue().getID()));
+            coliddoc.setCellValueFactory(
+            data -> new SimpleObjectProperty<Integer>(data.getValue().getID()));
 
-        colapeldoc.setCellValueFactory(
-                data -> new SimpleStringProperty(data.getValue().getApellidos()));
+            colapeldoc.setCellValueFactory(
+                    data -> new SimpleStringProperty(data.getValue().getApellidos()));
 
-        colnomdoc.setCellValueFactory(
-                data -> new SimpleStringProperty(data.getValue().getNombre()));
+            colnomdoc.setCellValueFactory(
+                    data -> new SimpleStringProperty(data.getValue().getNombre()));
 
-        colmovildoc.setCellValueFactory(
-                data -> new SimpleStringProperty(data.getValue().getMovil()));
+            colmovildoc.setCellValueFactory(
+                    data -> new SimpleStringProperty(data.getValue().getMovil()));
 
-        colespedoc.setCellValueFactory(
-                data -> new SimpleStringProperty(data.getValue().getEspecialidad()));
+            colespedoc.setCellValueFactory(
+                    data -> new SimpleStringProperty(data.getValue().getEspecialidad()));
 
-        nomdoc.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) {
-                String nombre = letrasCapitales(nomdoc.getText());
-                nomdoc.setText(nombre);
-            }
-        });
+            nomdoc.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue) {
+                    String nombre = letrasCapitales(nomdoc.getText());
+                    nomdoc.setText(nombre);
+                }
+            });
 
         apeldoc.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) {
@@ -120,7 +120,7 @@ public class DoctoresController implements Initializable {
         // que carga los municipios de cada provincia
         cargarEspecialidades();
 
-        //cargarDoctores();
+        cargarDoctors();
     }
 
 

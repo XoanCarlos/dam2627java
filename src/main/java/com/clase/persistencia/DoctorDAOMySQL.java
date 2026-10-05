@@ -1,8 +1,6 @@
 package com.clase.persistencia;
 
 import com.clase.modelo.Doctor;
-import com.clase.modelo.Paciente;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -56,11 +54,10 @@ public class DoctorDAOMySQL implements DoctorDAO {
             while (rs.next()) {
 
                 Doctor doctor = new Doctor(
-                        rs.getString("iddoc"),
+                        rs.getInt("iddoc"),
                         rs.getString("apeldoc"),
                         rs.getString("nomdoc"),
                         rs.getString("movildoc"),
-                        rs.getBoolean("coledoc"),
                         rs.getString("espedoc"));
                                                               
                 doctores.add(doctor);         

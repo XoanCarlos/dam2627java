@@ -155,7 +155,7 @@
    </HBox>
    <HBox alignment="CENTER" prefHeight="30.0" prefWidth="875.0">
       <children>
-         <Button fx:id="btnguardardoc" mnemonicParsing="false" text="  Guardar ">
+         <Button fx:id="btnguardardoc" mnemonicParsing="false" onAction="#guardarDoctor" text="  Guardar ">
             <HBox.margin>
                <Insets right="20.0" />
             </HBox.margin>
