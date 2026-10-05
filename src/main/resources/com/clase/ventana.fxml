@@ -6,6 +6,7 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.ToolBar?>
@@ -25,8 +26,9 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Archivo">
                   <items>
-                    <MenuItem fx:id="abrirVentana" mnemonicParsing="false" text="Abrir" />
+                    <MenuItem fx:id="abrirVentana" mnemonicParsing="false" onAction="#abrirDir" text="Abrir" />
                         <MenuItem mnemonicParsing="false" text="Guardar" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
                     <MenuItem fx:id="menuSalir" mnemonicParsing="false" onAction="#salirApp" text="Salir">
                            <accelerator>
                               <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
@@ -86,7 +88,19 @@
                   </content>
               </Tab>
       
-                  <Tab fx:id="pandoctores" text="Doctores" />
+                  <Tab fx:id="pandoctores" text="Doctores">
+                     <content>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <fx:include source="doctores.fxml" />
+                           </children>
+                        </StackPane>
+                     </content></Tab>
+                  <Tab text="   Citas   ">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                    </content>
+                  </Tab>
       
                </tabs>
       
