@@ -5,7 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import com.clase.modelo.Doctor;
-//import com.clase.persistencia.DoctorDAOMySQL;
+import com.clase.persistencia.DoctorDAOMySQL;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,9 +22,9 @@ import javafx.scene.control.ComboBox;
 
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
-//import javafx.scene.control.cell.PropertyValueFactory para usarlo en la tabla de Doctors
+//import javafx.scene.control.cell.PropertyValueFactory //para usarlo en la tabla de Doctors
 import javafx.beans.property.SimpleStringProperty;
-//import java.util.List;
+import java.util.List;
 
 public class DoctoresController implements Initializable {
 
@@ -68,7 +68,7 @@ public class DoctoresController implements Initializable {
         // Configuramos las columnas de la tabla para que muestren los datos de los
         // Doctors
 
-        coliddoc.setCellValueFactory( // para la columna dni coge el valor el dni del Doctor y lo muestra en la
+        coliddoc.setCellValueFactory( // para la columna id coge el valor el id del Doctor y lo muestra en la
                                        // tabla
                 data -> new SimpleStringProperty(data.getValue().getID()));
 
@@ -202,59 +202,59 @@ public class DoctoresController implements Initializable {
         emaildoc.setText("");
         coledocno.setSelected(false);
         coledocsi.setSelected(false);
-        espedoc.getSelectionModel().clearSelection();
-       
-    }
-}
+        espedoc.getSelectionModel().clearSelection();         
+        }
+        
    
-   /*
     // FUNCIONES CON BASE DE DATOS
     @FXML
     private void guardarDoctor() {
-        String dni = dnipac.getText();
-        String apellidos = apelpac.getText();
-        String nombre = nompac.getText();
-        LocalDate fechaNacimiento = nacpac.getValue();
-        String movil = movilpac.getText();
-        String email = emailpac.getText();
-        String direccion = dirpac.getText();
-        String provincia = propac.getValue();
-        String municipio = munipac.getValue();
+       
+        String apellidos = apeldoc.getText();
+        String nombre = nomdoc.getText();
+        String movil = movildoc.getText();
+        String email = emaildoc.getText();
+        Boolean colegiado = coledocsi.isSelected();
+        String especialidad = espedoc.getValue();
+      
         // Creamos el objeto Doctor
         Doctor Doctor = new Doctor(
-                dni,
                 apellidos,
                 nombre,
                 movil,
-                email, fechaNacimiento,
-                direccion,
-                provincia,
-                municipio);
-        if (Doctorexiste) {
+                email, 
+                colegiado,
+                especialidad
+            );  
+         
+        if (doctorexiste) {
             // Si el Doctor ya existe, lo actualizamos en la base de datos
-            DoctorDAOMySQL dao = new DoctorDAOMySQL();
-            dao.modificarDoctor(Doctor.getDni(), Doctor);
-            Doctorexiste = false; //importante
-            buscaPacdni();
-        } else {
+            //DoctorDAOMySQL dao = new DoctorDAOMySQL();
+            //dao.modificarDoctor(Doctor.getID(), Doctor);
+            doctorexiste = false; //importante
+            //buscadocid();
+        } else { 
+            
             // Si el Doctor no existe, lo guardamos en la base de datos
             DoctorDAOMySQL dao = new DoctorDAOMySQL();
             dao.guardarDoctor(Doctor);
-        }
+          }  
         //recargar la tabla con el nuevo Doctor
-        cargarDoctors();
+        cargarDoctors(); 
     }
-
+    
     // cargar Doctors en la tabla 
     @FXML
     private void cargarDoctors() { 
         // Creamos el DAO 
         DoctorDAOMySQL dao = new DoctorDAOMySQL(); 
         // Obtenemos los Doctors de la base de datos 
-        List<Doctor> Doctors = dao.cargarDoctors(); 
+        List<Doctor> Doctores = dao.cargarDoctores(); 
         // Los mostramos en la tabla 
-        tablaDoctors.getItems().setAll(Doctors); }
-
+        tablaDoctores.getItems().setAll(Doctores); 
+    }
+}      
+    /* 
    @FXML 
    private void cargarDoctor() {
         Doctor Doctorselect = tablaDoctors
@@ -275,16 +275,16 @@ public class DoctoresController implements Initializable {
             return;
         }
 
-        dnipac.setText(Doctor.getDni());
-        apelpac.setText(Doctor.getApellidos());
-        nompac.setText(Doctor.getNombre());
-        movilpac.setText(Doctor.getMovil());
-        emailpac.setText(Doctor.getEmail());
-        nacpac.setValue(Doctor.getNacimiento());
-        dirpac.setText(Doctor.getDireccion());
-        propac.setValue(Doctor.getProvincia());
+        dnidoc.setText(Doctor.getDni());
+        apeldoc.setText(Doctor.getApellidos());
+        nomdoc.setText(Doctor.getNombre());
+        movildoc.setText(Doctor.getMovil());
+        emaildoc.setText(Doctor.getEmail());
+        nacdoc.setValue(Doctor.getNacimiento());
+        dirdoc.setText(Doctor.getDireccion());
+        prodoc.setValue(Doctor.getProvincia());
         //cargarMunicipios();  comprobar esto
-        munipac.setValue(Doctor.getMunicipio());
+        munidoc.setValue(Doctor.getMunicipio());
             } 
     
     @FXML 
@@ -304,11 +304,11 @@ public class DoctoresController implements Initializable {
         cargarDoctors();
         }
     @FXML 
-    private void buscaPacdni() {
+    private void buscadocdni() {
 
         DoctorDAOMySQL dao = new DoctorDAOMySQL();
 
-        Doctor Doctor = dao.buscaPacdni(dnipac.getText());
+        Doctor Doctor = dao.buscadocdni(dnidoc.getText());
         
         if (Doctor == null){
             return;
@@ -316,16 +316,16 @@ public class DoctoresController implements Initializable {
             Doctorexiste = true;
         }
 
-        dnipac.setText(Doctor.getDni());
-        apelpac.setText(Doctor.getApellidos());
-        nompac.setText(Doctor.getNombre());
-        movilpac.setText(Doctor.getMovil());
-        emailpac.setText(Doctor.getEmail());
-        nacpac.setValue(Doctor.getNacimiento());
-        dirpac.setText(Doctor.getDireccion());
-        propac.setValue(Doctor.getProvincia());
+        dnidoc.setText(Doctor.getDni());
+        apeldoc.setText(Doctor.getApellidos());
+        nomdoc.setText(Doctor.getNombre());
+        movildoc.setText(Doctor.getMovil());
+        emaildoc.setText(Doctor.getEmail());
+        nacdoc.setValue(Doctor.getNacimiento());
+        dirdoc.setText(Doctor.getDireccion());
+        prodoc.setValue(Doctor.getProvincia());
         //cargarMunicipios();  comprobar esto
-        munipac.setValue(Doctor.getMunicipio());
+        munidoc.setValue(Doctor.getMunicipio());
         }  
     }
 */

@@ -14,7 +14,7 @@ public class Doctor {
     public Doctor(String apeldoc, String nomdoc,
             String movildoc, String emaildoc,
             Boolean coledoc, String espedoc) {
-        //this.dnidoc = dnidoc;
+    
         this.apeldoc = apeldoc;
         this.nomdoc = nomdoc;
         this.movildoc = movildoc;
