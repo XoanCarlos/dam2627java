@@ -120,7 +120,7 @@
         // que carga los municipios de cada provincia
         cargarEspecialidades();
 
-        cargarDoctors();
+        cargarDoctords();
     }
 
 
