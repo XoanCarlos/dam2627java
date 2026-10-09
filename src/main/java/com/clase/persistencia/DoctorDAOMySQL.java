@@ -1,6 +1,8 @@
 package com.clase.persistencia;
 
 import com.clase.modelo.Doctor;
+import com.clase.modelo.Paciente;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -37,12 +39,10 @@ public class DoctorDAOMySQL implements DoctorDAO {
             System.out.println("Error al guardar el doctor: " + e.getMessage());
         }
     }
-
    
     public List<Doctor> cargarDoctores() {
 
         List<Doctor> doctores = new ArrayList<>();
-
         // Solo obtenemos los campos que necesitamos para la tabla
         String sql = "SELECT * FROM doctores ORDER BY apeldoc, nomdoc";
 
@@ -52,7 +52,6 @@ public class DoctorDAOMySQL implements DoctorDAO {
 
             // Recorremos las filas obtenidas
             while (rs.next()) {
-
                 Doctor doctor = new Doctor(
                         rs.getInt("iddoc"),
                         rs.getString("apeldoc"),
@@ -69,4 +68,58 @@ public class DoctorDAOMySQL implements DoctorDAO {
         //devuelve los doctores que hay en la bbdd
         return doctores ;
     }
+
+    public Doctor buscaDocporId(Integer id) {
+
+        String sql = "SELECT iddoc, nomdoc, apeldoc, coledoc, "
+                + " movildoc, emaildoc, espedoc "
+                + " FROM doctores "
+                + " WHERE iddoc = ?";
+
+        try (Connection conexion = ConexionMySQL.getConexion();
+                PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+
+            try (ResultSet rs = ps.executeQuery()) {
+
+                if (rs.next()) {
+
+                    Doctor doctor = new Doctor(
+                            rs.getInt("iddoc"),
+                            rs.getString("nomdoc"),
+                            rs.getString("apeldoc"),
+                            rs.getString("movildoc"),
+                            rs.getString("emaildoc"),
+                            rs.getBoolean("coledoc"),
+                            rs.getString("espedoc"));
+                    
+                    return doctor;
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error al buscar el paciente: " + e.getMessage());
+        }
+        return null;
+    }
+
+    public void eliminarDoctor(Integer id) {
+
+            String sql = "DELETE FROM doctores WHERE iddoc = ?";
+
+            try (Connection conexion = ConexionMySQL.getConexion();
+                    PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+                ps.setInt(1, id);
+
+                ps.executeUpdate();
+
+                System.out.println("Doctor eliminado correctamente.");
+
+            } catch (SQLException e) {
+                System.out.println("Error eliminar doctor: " + e.getMessage());
+            }
+        }
+    
 }

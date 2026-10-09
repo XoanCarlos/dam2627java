@@ -1,5 +1,7 @@
 package com.clase.modelo;
 
+
+
 public class Doctor {
     private Integer iddoc;
     private String apeldoc;
@@ -22,8 +24,21 @@ public class Doctor {
         this.coledoc = coledoc;
         this.espedoc = espedoc;
     }
-    
-    // modelo para la tabla de docientes
+
+    //modelo para cargar en el formulario desde la tabla en la bbdd
+    public Doctor(Integer iddoc, String apeldoc, String nomdoc,
+            String movildoc, String emaildoc,
+            Boolean coledoc, String espedoc) {
+        this.iddoc = iddoc;
+        this.apeldoc = apeldoc;
+        this.nomdoc = nomdoc;
+        this.movildoc = movildoc;
+        this.emaildoc = emaildoc;
+        this.coledoc = coledoc;
+        this.espedoc = espedoc;
+    }
+
+    // modelo para la tabla de doctores
     public Doctor(Integer iddoc, String apeldoc, String nomdoc,
             String movildoc, String espedoc) {
 

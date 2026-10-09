@@ -7,8 +7,8 @@ import java.util.List;
 public interface DoctorDAO {
  void guardarDoctor(Doctor doctor);
 List<Doctor> cargarDoctores();
-// void eliminarDoctor(String dni);
-// Doctor buscarDoctor(String dni);
+void eliminarDoctor(Integer id);
+Doctor buscaDocporId (Integer id);
 // void modificarDoctor(String dni, Doctor doctor);
 // Doctor buscaDni(String dni); 
 }

@@ -5,6 +5,7 @@
     import com.google.gson.JsonParser;
 
     import com.clase.modelo.Doctor;
+
     import com.clase.persistencia.DoctorDAOMySQL;
 
     import java.net.URL;
@@ -23,7 +24,7 @@
     import javafx.scene.control.TableView;
     import javafx.scene.control.TableColumn;
     import javafx.beans.property.SimpleObjectProperty;
-    import javafx.scene.control.cell.PropertyValueFactory; //para usarlo en la tabla de Doctors
+    //import javafx.scene.control.cell.PropertyValueFactory; //para usarlo en la tabla de Doctors
     import javafx.beans.property.SimpleStringProperty;
     import java.util.List;
 
@@ -106,7 +107,7 @@
 
         //carga un Doctor al seleccionarlo en la tabla 
         // en el formulario para poder modificarlo o eliminarlo
-/*
+
         tablaDoctores.getSelectionModel()
         .selectedItemProperty()
         .addListener((observable, anterior, nuevo) -> {
@@ -115,7 +116,7 @@
                 cargarDoctor();
             }
         });
-*/
+
         // manejador de provinvicas, cargamos provincias y luego el evento
         // que carga los municipios de cada provincia
         cargarEspecialidades();
@@ -206,7 +207,7 @@
         }
         
    
-    // FUNCIONES CON BASE DE DATOS
+// =============== FUNCIONES CON BASE DE DATOS =======================
     @FXML
     private void guardarDoctor() {
        
@@ -252,44 +253,48 @@
         List<Doctor> Doctores = dao.cargarDoctores(); 
         // Los mostramos en la tabla 
         tablaDoctores.getItems().setAll(Doctores); 
-    }
-}      
-    /* 
-   @FXML 
+        }
+          
+        
+  @FXML 
    private void cargarDoctor() {
-        Doctor Doctorselect = tablaDoctors
+        Doctor doctorselect = tablaDoctores
                 .getSelectionModel()
                 .getSelectedItem(); //carga los datos de la fila seleccionado
 
-        if (Doctorselect == null) {
+        if (doctorselect == null) {
             return;
         } else {
-            Doctorexiste = true;
+            doctorexiste = true;
         }
-
+      
         DoctorDAOMySQL dao = new DoctorDAOMySQL();
 
-        Doctor Doctor = dao.buscarDoctor(Doctorselect.getDni());
+        Doctor doctor = dao.buscaDocporId(doctorselect.getID());
 
-        if (Doctor == null) {
+        if (doctor == null) {
             return;
         }
 
-        dnidoc.setText(Doctor.getDni());
-        apeldoc.setText(Doctor.getApellidos());
-        nomdoc.setText(Doctor.getNombre());
-        movildoc.setText(Doctor.getMovil());
-        emaildoc.setText(Doctor.getEmail());
-        nacdoc.setValue(Doctor.getNacimiento());
-        dirdoc.setText(Doctor.getDireccion());
-        prodoc.setValue(Doctor.getProvincia());
+        iddoc.setText(Integer.toString(doctor.getID()));
+        apeldoc.setText(doctor.getApellidos());
+        nomdoc.setText(doctor.getNombre());
+        movildoc.setText(doctor.getMovil());
+        emaildoc.setText(doctor.getEmail());
+       
+        if (doctor.getColegiado() == true ){
+            coledocsi.setSelected(true);
+        } else {
+            coledocno.setSelected(true);
         //cargarMunicipios();  comprobar esto
-        munidoc.setValue(Doctor.getMunicipio());
-            } 
+            }
+        espedoc.setValue(doctor.getEspecialidad());
+        }   
+    
     
     @FXML 
-    private void eliminarDoctor() {
-        Doctor seleccionado = tablaDoctors
+    private void deleteDoctor() {
+        Doctor seleccionado = tablaDoctores
                 .getSelectionModel()
                 .getSelectedItem();
 
@@ -298,12 +303,14 @@
         }
 
         DoctorDAOMySQL dao = new DoctorDAOMySQL();
-        dao.eliminarDoctor(seleccionado.getDni());
+        dao.eliminarDoctor(seleccionado.getID());
 
         // Recargamos la tabla de Doctors
         cargarDoctors();
         }
-    @FXML 
+    }
+    /*    
+        @FXML 
     private void buscadocdni() {
 
         DoctorDAOMySQL dao = new DoctorDAOMySQL();
