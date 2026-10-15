@@ -1,12 +1,15 @@
 package com.clase.persistencia;
 
 import com.clase.modelo.Doctor;
-import com.clase.modelo.Paciente;
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+
+
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -122,4 +125,70 @@ public class DoctorDAOMySQL implements DoctorDAO {
             }
         }
     
+    public void modificarDoctor(Integer id, Doctor doctor) {
+
+        String sql = "UPDATE doctores SET "
+                + "nomdoc = ?, "
+                + "apeldoc  = ?, "
+                + "coledoc = ?, "
+                + "movildoc = ?, "
+                + "emaildco = ?, "
+                + "espedoc = ?, "
+                + "WHERE iddoc = ?";
+
+        try (Connection conexion = ConexionMySQL.getConexion();
+                PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+                ps.setString(1, doctor.getNombre());
+                ps.setString(2, doctor.getApellidos());
+                ps.setBoolean(3, doctor.getColegiado());
+                ps.setString(4, doctor.getMovil());
+                ps.setString(5, doctor.getEmail());
+                ps.setString(6, doctor.getEspecialidad());
+        
+                System.out.println(id);       
+                // ID del doctor para modificar
+                ps.setInt(7, id);
+
+                ps.executeUpdate();
+
+                System.out.println("Paciente modificado correctamente.");
+
+        } catch (SQLException e) {
+            System.out.println("Error al modificar el paciente: " + e.getMessage());
+        }
+    }
+
+    public List<Doctor> cargardoctoresEspec(String espedoc){
+        List<Doctor> doctores = new ArrayList<>();
+        String sql = "SELECT iddoc, nomdoc, apeldoc, coledoc, "
+                + " movildoc, emaildoc, espedoc "
+                + " FROM doctores "
+                + " WHERE espedoc = ?";
+
+        try (Connection conexion = ConexionMySQL.getConexion();
+                PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setString(1, espedoc);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Doctor doctor = new Doctor(
+                            rs.getInt("iddoc"),
+                            rs.getString("nomdoc"),
+                            rs.getString("apeldoc"),
+                            rs.getString("movildoc"),
+                            rs.getString("emaildoc"),
+                            rs.getBoolean("coledoc"),
+                            rs.getString("espedoc"));
+                    
+                    doctores.add(doctor);
+                }
+              
+            }
+         
+        } catch (SQLException e) {
+            System.out.println("Error al buscar el paciente: " + e.getMessage());
+        }
+        return doctores;   
+
+    }
 }

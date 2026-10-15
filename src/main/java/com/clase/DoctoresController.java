@@ -16,7 +16,9 @@
 
     import javafx.fxml.FXML;
     import javafx.fxml.Initializable;
+    import javafx.scene.control.Alert;
     import javafx.scene.control.Button;
+    import javafx.scene.control.ButtonType;
     import javafx.scene.control.RadioButton;
     import javafx.scene.control.TextField;
     import javafx.scene.control.ComboBox;
@@ -27,6 +29,7 @@
     //import javafx.scene.control.cell.PropertyValueFactory; //para usarlo en la tabla de Doctors
     import javafx.beans.property.SimpleStringProperty;
     import java.util.List;
+import java.util.Optional;
 
     public class DoctoresController implements Initializable {
 
@@ -203,14 +206,16 @@
         emaildoc.setText("");
         coledocno.setSelected(false);
         coledocsi.setSelected(false);
-        espedoc.getSelectionModel().clearSelection();         
+        espedoc.getSelectionModel().clearSelection();
+          //recargar la tabla con el nuevo Doctor
+        cargarDoctors();          
         }
         
    
 // =============== FUNCIONES CON BASE DE DATOS =======================
     @FXML
     private void guardarDoctor() {
-       
+        String id = iddoc.getText();  
         String apellidos = apeldoc.getText();
         String nombre = nomdoc.getText();
         String movil = movildoc.getText();
@@ -230,15 +235,47 @@
          
         if (doctorexiste) {
             // Si el Doctor ya existe, lo actualizamos en la base de datos
-            //DoctorDAOMySQL dao = new DoctorDAOMySQL();
-            //dao.modificarDoctor(Doctor.getID(), Doctor);
-            doctorexiste = false; //importante
+             // Si el Doctor no existe, lo guardamos en la base de datos
+            Alert alert3 = new Alert(Alert.AlertType.CONFIRMATION);
+            alert3.setTitle("Aviso");
+            alert3.setHeaderText(null);
+            alert3.setContentText("¿Desea Modificar datos del Doctor?");
+            Optional<ButtonType> result2 = alert3.showAndWait();
+            if (result2.isPresent() && result2.get() == ButtonType.OK){
+                DoctorDAOMySQL dao = new DoctorDAOMySQL();
+                dao.modificarDoctor(Integer.parseInt(id), Doctor);
+                doctorexiste = false; //importante sino siempre graba
+                Alert alert4 = new Alert(Alert.AlertType.INFORMATION);
+                alert4.setTitle("Aviso");
+                alert4.setHeaderText(null);
+                alert4.setContentText("Doctor modificado en Base de Datos");
+                alert4.showAndWait();
+
+            } else{
+                return;
+            }
+
             //buscadocid();
         } else { 
             
             // Si el Doctor no existe, lo guardamos en la base de datos
-            DoctorDAOMySQL dao = new DoctorDAOMySQL();
-            dao.guardarDoctor(Doctor);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Aviso");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Desea Grabar el Doctor?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK)
+                {
+                DoctorDAOMySQL dao = new DoctorDAOMySQL();
+                dao.guardarDoctor(Doctor);
+                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                alert2.setTitle("Aviso");
+                alert2.setHeaderText(null);
+                alert2.setContentText("Doctor dado de alta en Base de Datos");
+                alert2.showAndWait();
+                } else{
+                    return;
+                }    
           }  
         //recargar la tabla con el nuevo Doctor
         cargarDoctors(); 
@@ -258,6 +295,8 @@
         
   @FXML 
    private void cargarDoctor() {
+        coledocno.setSelected(false);
+        coledocsi.setSelected(false);
         Doctor doctorselect = tablaDoctores
                 .getSelectionModel()
                 .getSelectedItem(); //carga los datos de la fila seleccionado
@@ -297,42 +336,37 @@
         Doctor seleccionado = tablaDoctores
                 .getSelectionModel()
                 .getSelectedItem();
-
         if (seleccionado == null) {
             return;
         }
-
-        DoctorDAOMySQL dao = new DoctorDAOMySQL();
-        dao.eliminarDoctor(seleccionado.getID());
-
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Aviso");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Desea Eliminar el Doctor");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK){
+            DoctorDAOMySQL dao = new DoctorDAOMySQL();
+            dao.eliminarDoctor(seleccionado.getID());
+            Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+            alert2.setTitle("Aviso");
+            alert2.setHeaderText(null);
+            alert2.setContentText("Doctor dado de baja en Base de Datos");      
+        }else{
+            return;
+        }
         // Recargamos la tabla de Doctors
         cargarDoctors();
         }
-    }
-    /*    
-        @FXML 
-    private void buscadocdni() {
-
-        DoctorDAOMySQL dao = new DoctorDAOMySQL();
-
-        Doctor Doctor = dao.buscadocdni(dnidoc.getText());
+      
+    
+    @FXML 
+    private void buscadocsporEspecialidad(){ 
+       
         
-        if (Doctor == null){
-            return;
-        } else {
-            Doctorexiste = true;
+        DoctorDAOMySQL dao = new DoctorDAOMySQL(); 
+        // Obtenemos los Doctors de la base de datos 
+        List<Doctor> Doctores = dao.cargardoctoresEspec(espedoc.getValue()); 
+        // Los mostramos en la tabla 
+        tablaDoctores.getItems().setAll(Doctores); 
         }
-
-        dnidoc.setText(Doctor.getDni());
-        apeldoc.setText(Doctor.getApellidos());
-        nomdoc.setText(Doctor.getNombre());
-        movildoc.setText(Doctor.getMovil());
-        emaildoc.setText(Doctor.getEmail());
-        nacdoc.setValue(Doctor.getNacimiento());
-        dirdoc.setText(Doctor.getDireccion());
-        prodoc.setValue(Doctor.getProvincia());
-        //cargarMunicipios();  comprobar esto
-        munidoc.setValue(Doctor.getMunicipio());
-        }  
     }
-*/

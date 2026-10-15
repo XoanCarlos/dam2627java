@@ -1,7 +1,5 @@
 package com.clase.modelo;
 
-
-
 public class Doctor {
     private Integer iddoc;
     private String apeldoc;
