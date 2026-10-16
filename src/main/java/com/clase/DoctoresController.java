@@ -29,7 +29,7 @@
     //import javafx.scene.control.cell.PropertyValueFactory; //para usarlo en la tabla de Doctors
     import javafx.beans.property.SimpleStringProperty;
     import java.util.List;
-import java.util.Optional;
+    import java.util.Optional;
 
     public class DoctoresController implements Initializable {
 
@@ -350,7 +350,8 @@ import java.util.Optional;
             Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
             alert2.setTitle("Aviso");
             alert2.setHeaderText(null);
-            alert2.setContentText("Doctor dado de baja en Base de Datos");      
+            alert2.setContentText("Doctor dado de baja en Base de Datos");
+            alert2.showAndWait();      
         }else{
             return;
         }
