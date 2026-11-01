@@ -46,35 +46,41 @@ public class DoctorDAOMySQL implements DoctorDAO {
     public List<Doctor> cargarDoctores() {
 
         List<Doctor> doctores = new ArrayList<>();
-        // Solo obtenemos los campos que necesitamos para la tabla
-        String sql = "SELECT * FROM doctores ORDER BY apeldoc, nomdoc";
+
+        String sql = "SELECT iddoc, apeldoc, nomdoc, movildoc, "
+                + "emaildoc, coledoc, espedoc "
+                + "FROM doctores ORDER BY apeldoc, nomdoc";
 
         try (Connection conexion = ConexionMySQL.getConexion();
                 PreparedStatement ps = conexion.prepareStatement(sql);
                 ResultSet rs = ps.executeQuery()) {
-
             // Recorremos las filas obtenidas
+
             while (rs.next()) {
+
                 Doctor doctor = new Doctor(
                         rs.getInt("iddoc"),
                         rs.getString("apeldoc"),
                         rs.getString("nomdoc"),
                         rs.getString("movildoc"),
-                        rs.getString("espedoc"));
-                                                              
-                doctores.add(doctor);         
+                        rs.getString("emaildoc"),
+                        rs.getBoolean("coledoc"),
+                        rs.getString("espedoc")
+                );
+
+                doctores.add(doctor);
             }
 
         } catch (SQLException e) {
-            System.out.println("Error al cargar los doctores: " + e.getMessage());
+            System.out.println("Error al cargar doctores: " + e.getMessage());
         }
-        //devuelve los doctores que hay en la bbdd
-        return doctores ;
+
+        return doctores;
     }
 
     public Doctor buscaDocporId(Integer id) {
 
-        String sql = "SELECT iddoc, nomdoc, apeldoc, coledoc, "
+        String sql = "SELECT iddoc, apeldoc, nomdoc, coledoc, "
                 + " movildoc, emaildoc, espedoc "
                 + " FROM doctores "
                 + " WHERE iddoc = ?";
@@ -90,8 +96,8 @@ public class DoctorDAOMySQL implements DoctorDAO {
 
                     Doctor doctor = new Doctor(
                             rs.getInt("iddoc"),
-                            rs.getString("nomdoc"),
                             rs.getString("apeldoc"),
+                            rs.getString("nomdoc"),
                             rs.getString("movildoc"),
                             rs.getString("emaildoc"),
                             rs.getBoolean("coledoc"),
@@ -132,9 +138,10 @@ public class DoctorDAOMySQL implements DoctorDAO {
                 + "apeldoc  = ?, "
                 + "coledoc = ?, "
                 + "movildoc = ?, "
-                + "emaildco = ?, "
-                + "espedoc = ?, "
+                + "emaildoc = ?, "
+                + "espedoc = ? "
                 + "WHERE iddoc = ?";
+       
 
         try (Connection conexion = ConexionMySQL.getConexion();
                 PreparedStatement ps = conexion.prepareStatement(sql)) {
@@ -152,16 +159,19 @@ public class DoctorDAOMySQL implements DoctorDAO {
 
                 ps.executeUpdate();
 
-                System.out.println("Paciente modificado correctamente.");
+                System.out.println("Doctor modificado correctamente.");
 
         } catch (SQLException e) {
-            System.out.println("Error al modificar el paciente: " + e.getMessage());
+            System.out.println("Error al modificar el doctor: " + e.getMessage());
         }
+
+        
+        cargarDoctores();
     }
 
     public List<Doctor> cargardoctoresEspec(String espedoc){
         List<Doctor> doctores = new ArrayList<>();
-        String sql = "SELECT iddoc, nomdoc, apeldoc, coledoc, "
+        String sql = "SELECT iddoc, apeldoc, nomdoc, coledoc, "
                 + " movildoc, emaildoc, espedoc "
                 + " FROM doctores "
                 + " WHERE espedoc = ?";
@@ -173,8 +183,8 @@ public class DoctorDAOMySQL implements DoctorDAO {
                 while (rs.next()) {
                     Doctor doctor = new Doctor(
                             rs.getInt("iddoc"),
-                            rs.getString("nomdoc"),
                             rs.getString("apeldoc"),
+                            rs.getString("nomdoc"),
                             rs.getString("movildoc"),
                             rs.getString("emaildoc"),
                             rs.getBoolean("coledoc"),

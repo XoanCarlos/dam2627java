@@ -199,6 +199,8 @@
 
     @FXML
     private void cleanFormdoc() {
+        doctorexiste = false;
+
         iddoc.setText("");
         apeldoc.setText("");
         nomdoc.setText("");
@@ -290,8 +292,10 @@
         List<Doctor> Doctores = dao.cargarDoctores(); 
         // Los mostramos en la tabla 
         tablaDoctores.getItems().setAll(Doctores); 
+        tablaDoctores.refresh();
         }
           
+
         
   @FXML 
    private void cargarDoctor() {
