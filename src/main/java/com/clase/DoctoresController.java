@@ -67,8 +67,8 @@
 
         // Este método se llama automáticamente cuando se carga la vista FXML
 
-        @Override
-        public void initialize(URL url, ResourceBundle rb) {
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
 
             // Configuramos las columnas de la tabla para que muestren los datos de los
             // Doctors

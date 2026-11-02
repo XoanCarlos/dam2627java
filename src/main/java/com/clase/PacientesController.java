@@ -66,6 +66,8 @@ public class PacientesController implements Initializable {
 
     boolean pacienteexiste = false;
 
+    private CitasController citasController;
+
     // implementación de los métodos de la interfaz Initializable
 
     // Este método se llama automáticamente cuando se carga la vista FXML
@@ -144,6 +146,11 @@ public class PacientesController implements Initializable {
 
 
     // FUNCIONES AUXILIARES DE PACIENTES
+
+    // método para recibir citas controller
+    public void setCitasController(CitasController controller){
+        this.citasController = controller;
+    } 
     
     @FXML
     private void comprobarDni() {
@@ -408,6 +415,13 @@ public class PacientesController implements Initializable {
             return;
         } else {
             pacienteexiste = true;
+            // y enviamos los datos al controller citas
+
+            // Enviamos el paciente al controlador de citas
+            if (citasController != null) {
+                citasController.cargarDatosPaciente(pacienteselect);
+    }
+
         }
 
         PacienteDAOMySQL dao = new PacienteDAOMySQL();

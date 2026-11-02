@@ -10,8 +10,23 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+
+
 public class VentanaController {
+    @FXML
+    private PacientesController panelPacientesController;
+
+    @FXML
+    private CitasController panelCitasController;
     // salir de la aplicación
+
+    //conecta ventana principal con los otros controles
+    @FXML
+    public void initialize() {
+        panelPacientesController.setCitasController(panelCitasController);
+    }
+
+
     @FXML
     private void salirApp() {
         Platform.exit();

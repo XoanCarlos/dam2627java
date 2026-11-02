@@ -83,7 +83,7 @@
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                           </padding>
       
-                          <fx:include source="pacientes.fxml" />
+                          <fx:include fx:id="panelPacientes" source="pacientes.fxml" />
                       </StackPane>
                   </content>
               </Tab>
@@ -92,7 +92,7 @@
                      <content>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
                            <children>
-                              <fx:include source="doctores.fxml" />
+                              <fx:include fx:id="panelDoctores" source="doctores.fxml" />
                            </children>
                         </StackPane>
                      </content></Tab>
@@ -100,7 +100,7 @@
                      <content>
                         <StackPane prefHeight="150.0" prefWidth="200.0">
                            <children>
-                              <fx:include source="citas.fxml" />
+                              <fx:include fx:id="panelCitas" source="citas.fxml" />
                            </children>
                         </StackPane>
                      </content>
