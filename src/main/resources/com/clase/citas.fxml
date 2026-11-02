@@ -33,7 +33,7 @@
          <Bloom threshold="1.0" />
       </effect>
    </Label>
-   <HBox alignment="CENTER_LEFT">
+   <HBox alignment="CENTER">
       <children>
          <Label text="IDCita" />
          <TextField fx:id="iddoc" alignment="CENTER" disable="true" maxWidth="-Infinity" prefHeight="25.0" prefWidth="95.0" style="-fx-background-color: #FFF1A8;">
@@ -49,7 +49,7 @@
                <Insets />
             </HBox.margin>
          </Label>
-         <TextField fx:id="iddoc1" alignment="CENTER" disable="true" maxWidth="-Infinity" prefHeight="25.0" prefWidth="95.0" style="-fx-background-color: #FFF1A8;">
+         <TextField fx:id="citaiddoc" alignment="CENTER" disable="true" maxWidth="-Infinity" prefHeight="25.0" prefWidth="95.0" style="-fx-background-color: #FFF1A8;">
             <effect>
                <Blend />
             </effect>
@@ -88,7 +88,7 @@
       <children>
          <Label text="Motivo Cita: ">
             <HBox.margin>
-               <Insets left="5.0" />
+               <Insets left="25.0" />
             </HBox.margin>
          </Label>
          <Label>
@@ -96,10 +96,13 @@
                <Insets left="20.0" right="20.0" />
             </HBox.margin>
          </Label>
-         <TextField fx:id="nomdoc" maxWidth="-Infinity" prefHeight="25.0" prefWidth="264.0">
+         <TextField fx:id="nomdoc" maxWidth="-Infinity" prefHeight="25.0" prefWidth="260.0">
             <HBox.margin>
                <Insets />
             </HBox.margin>
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
          </TextField>
          <Label text="Fecha:">
             <HBox.margin>
@@ -121,9 +124,9 @@
                <Insets left="10.0" right="10.0" />
             </HBox.margin>
          </Label>
-         <CheckBox mnemonicParsing="false" text="  Pendiente  " />
-         <CheckBox mnemonicParsing="false" text="  Atendida  " />
-         <CheckBox mnemonicParsing="false" text="  Anulada" />
+         <CheckBox fx:id="chkpendiente" mnemonicParsing="false" onAction="#gestionarExclusion" text="  Pendiente  " />
+         <CheckBox fx:id="chkatendida" mnemonicParsing="false" onAction="#gestionarExclusion" text="  Atendida  " />
+         <CheckBox fx:id="chkanulada" mnemonicParsing="false" onAction="#gestionarExclusion" text="  Anulada" />
          <Label>
             <HBox.margin>
                <Insets left="20.0" right="10.0" />
@@ -131,7 +134,7 @@
          </Label>
       </children>
       <padding>
-         <Insets left="30.0" />
+         <Insets left="20.0" />
       </padding>
       <opaqueInsets>
          <Insets />
@@ -144,13 +147,13 @@
                <Insets left="20.0" right="10.0" />
             </HBox.margin>
          </Label>
-         <TextArea prefHeight="85.0" prefWidth="458.0" />
+         <TextArea prefHeight="85.0" prefWidth="445.0" />
          <Label text="Tratamiento::">
             <HBox.margin>
                <Insets left="20.0" right="10.0" />
             </HBox.margin>
          </Label>
-         <TextArea prefHeight="85.0" prefWidth="451.0" />
+         <TextArea prefHeight="85.0" prefWidth="445.0" />
       </children>
    </HBox>
    <HBox alignment="CENTER" prefHeight="30.0" prefWidth="875.0">

@@ -63,6 +63,9 @@
 
         boolean doctorexiste = false;
 
+        // referencia al controlador de citas para poder enviarle el doctor seleccionado
+        private CitasController citasController;
+
         // implementación de los métodos de la interfaz Initializable
 
         // Este método se llama automáticamente cuando se carga la vista FXML
@@ -125,9 +128,14 @@
         cargarEspecialidades();
 
         cargarDoctors();
+
+       
     }
 
-
+    // Inicializamos el controlador de citas como null
+        public void setCitasController(CitasController citasController) {
+            this.citasController = citasController;
+    }
     // FUNCIONES AUXILIARES DE DoctorS
    
     /// letras capitales
@@ -309,6 +317,7 @@
             return;
         } else {
             doctorexiste = true;
+            citasController.cargarDatosDoctor(doctorselect); // enviamos el doctor seleccionado al controlador de citas
         }
       
         DoctorDAOMySQL dao = new DoctorDAOMySQL();

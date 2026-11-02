@@ -66,6 +66,7 @@ public class PacientesController implements Initializable {
 
     boolean pacienteexiste = false;
 
+    // referencia al controlador de citas para poder enviarle el paciente seleccionado
     private CitasController citasController;
 
     // implementación de los métodos de la interfaz Initializable

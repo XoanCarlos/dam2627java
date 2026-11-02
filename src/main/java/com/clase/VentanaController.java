@@ -16,6 +16,9 @@ public class VentanaController {
     @FXML
     private PacientesController panelPacientesController;
 
+    @FXML 
+    private DoctoresController panelDoctoresController;
+
     @FXML
     private CitasController panelCitasController;
     // salir de la aplicación
@@ -23,7 +26,11 @@ public class VentanaController {
     //conecta ventana principal con los otros controles
     @FXML
     public void initialize() {
+        
+        //para acceder desde pacientes y doctores al panel de citas
+
         panelPacientesController.setCitasController(panelCitasController);
+        panelDoctoresController.setCitasController(panelCitasController);
     }
 
 
