@@ -70,14 +70,12 @@ public class PacientesController implements Initializable {
     private CitasController citasController;
 
     // implementación de los métodos de la interfaz Initializable
-
     // Este método se llama automáticamente cuando se carga la vista FXML
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        // Configuramos las columnas de la tabla para que muestren los datos de los
-        // pacientes
+        // Configuramos las columnas de la tabla para que muestren los datos de los pacientes
 
         coldnipac.setCellValueFactory( // para la columna dni coge el valor el dni del paciente y lo muestra en la
                                        // tabla
@@ -125,7 +123,7 @@ public class PacientesController implements Initializable {
         });
 
         //carga un paciente al seleccionarlo en la tabla 
-        // en el formulario para poder modificarlo o eliminarlo
+        //en el formulario para poder modificarlo o eliminarlo
 
         tablaPacientes.getSelectionModel()
         .selectedItemProperty()
@@ -148,7 +146,7 @@ public class PacientesController implements Initializable {
 
     // FUNCIONES AUXILIARES DE PACIENTES
 
-    // método para recibir citas controller
+    // método para recibir peticiones de citas controller
     public void setCitasController(CitasController controller){
         this.citasController = controller;
     } 
@@ -416,14 +414,12 @@ public class PacientesController implements Initializable {
             return;
         } else {
             pacienteexiste = true;
-            // y enviamos los datos al controller citas
-
             // Enviamos el paciente al controlador de citas
             if (citasController != null) {
                 citasController.cargarDatosPaciente(pacienteselect);
-    }
-
         }
+
+    }
 
         PacienteDAOMySQL dao = new PacienteDAOMySQL();
 
@@ -487,6 +483,11 @@ public class PacientesController implements Initializable {
             return;
         } else {
             pacienteexiste = true;
+              // Enviamos el paciente al controlador de citas
+            if (citasController != null) {
+                citasController.cargarDatosPaciente(paciente);
+        }
+
         }
         dnipac.setText(paciente.getDni());
         apelpac.setText(paciente.getApellidos());

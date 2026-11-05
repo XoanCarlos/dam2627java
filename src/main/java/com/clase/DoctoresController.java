@@ -67,7 +67,6 @@
         private CitasController citasController;
 
         // implementación de los métodos de la interfaz Initializable
-
         // Este método se llama automáticamente cuando se carga la vista FXML
 
     @Override
