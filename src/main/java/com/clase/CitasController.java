@@ -4,18 +4,23 @@ package com.clase;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
+import com.clase.modelo.Cita;
 import com.clase.modelo.Doctor;
 import com.clase.modelo.Paciente;
+import com.clase.persistencia.CitaDAOMySQL;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -50,8 +55,10 @@ public class CitasController implements Initializable {
         cargarHorario();
 
     }
-
-    // FUNCIONES AUXILIARES
+    
+    boolean citaexiste = false;
+    
+   
 
     // Recibe el paciente seleccionado
     public void cargarDatosPaciente(Paciente paciente) {
@@ -123,4 +130,85 @@ public class CitasController implements Initializable {
         diagnostico.setText(null);
         tratamiento.setText(null);       
     }
-}
+
+//FUNCION CRUD DE CITAS
+ @FXML
+    private void guardarCita() {
+        
+        String citaiddoctor = citaiddoc.getText();
+        String citadnipaciente = citadnipac.getText();
+        String citamotivo = motivo.getText();
+        LocalDate citafecha = fechacita.getValue();
+        String citahora = horacita.getValue();
+        String citaestado = "";
+        if (chkpendiente.isSelected()) {
+            citaestado = "pendiente";
+        } else if (chkanulada.isSelected()) {
+            citaestado = "anulada";
+        } else if (chkatendida.isSelected()) {
+            citaestado = "atendida";
+        }
+        String citadiagnostico = diagnostico.getText();
+        String citatratamiento = tratamiento.getText();
+      
+        // Creamos el objeto Cita
+        Cita cita = new Cita(
+                citaiddoctor,
+                citadnipaciente,
+                citamotivo,
+                citafecha, 
+                citahora,
+                citaestado,
+                citadiagnostico,
+                citatratamiento
+            );  
+         
+        if (citaexiste) {
+            // Si el Doctor ya existe, lo actualizamos en la base de datos
+             // Si el Doctor no existe, lo guardamos en la base de datos
+            Alert alert3 = new Alert(Alert.AlertType.CONFIRMATION);
+            alert3.setTitle("Aviso");
+            alert3.setHeaderText(null);
+            alert3.setContentText("¿Desea Modificar datos del Cita?");
+            Optional<ButtonType> result2 = alert3.showAndWait();
+            if (result2.isPresent() && result2.get() == ButtonType.OK){
+                CitaDAOMySQL dao = new CitaDAOMySQL();
+                dao.modificarCita(Integer.parseInt(idcita.getText()), cita);
+                citaexiste = false; //importante sino siempre graba
+                Alert alert4 = new Alert(Alert.AlertType.INFORMATION);
+                alert4.setTitle("Aviso");
+                alert4.setHeaderText(null);
+                alert4.setContentText("Cita modificada en Base de Datos");
+                alert4.showAndWait();
+
+            } else{
+                return;
+            }
+
+            //buscadocid();
+        } else { 
+            
+            // Si la Cita no existe, lo guardamos en la base de datos
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Aviso");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Desea Grabar el Cita?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK)
+                {
+                CitaDAOMySQL dao = new CitaDAOMySQL();
+                dao.guardarCita(cita);
+                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                alert2.setTitle("Aviso");
+                alert2.setHeaderText(null);
+                alert2.setContentText("Doctor dado de alta en Base de Datos");
+                alert2.showAndWait();
+                } else{
+                    return;
+                }    
+          }  
+        //recargar la tabla con el nuevo Doctor
+        //cargarCitas(); 
+    }
+
+ }

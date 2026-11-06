@@ -2,7 +2,7 @@
 package com.clase.modelo;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
+
 
 public class Cita {
 
@@ -10,7 +10,7 @@ public class Cita {
     private String citadnipac;
     private int citaiddoc;
     private LocalDate fechacita;
-    private LocalTime horacita;
+    private String horacita;
     private String motivo;
     private String diagnostico;
     private String tratamiento;
@@ -22,7 +22,7 @@ public class Cita {
 
     // Constructor con todos los campos
     public Cita(int idcita, String citadnipac, int citaiddoc,
-                LocalDate fechacita, LocalTime horacita,
+                LocalDate fechacita, String horacita,
                 String motivo, String diagnostico,
                 String tratamiento, String estadocita) {
 
@@ -71,11 +71,11 @@ public class Cita {
         this.fechacita = fechacita;
     }
 
-    public LocalTime getHoracita() {
+    public String getHoracita() {
         return horacita;
     }
 
-    public void setHoracita(LocalTime horacita) {
+    public void setHoracita(String horacita) {
         this.horacita = horacita;
     }
 

@@ -2,7 +2,6 @@ package com.clase.persistencia;
 
 import com.clase.modelo.Doctor;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
