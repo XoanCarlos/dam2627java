@@ -5,8 +5,7 @@
     import com.google.gson.JsonParser;
 
     import com.clase.modelo.Doctor;
-    
-
+     
     import com.clase.persistencia.DoctorDAOMySQL;
 
     import java.net.URL;
@@ -302,8 +301,7 @@
         tablaDoctores.getItems().setAll(Doctores); 
         tablaDoctores.refresh();
         }
-          
-
+        
         
   @FXML 
    private void cargarDoctor() {

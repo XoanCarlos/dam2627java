@@ -16,6 +16,11 @@ public class Cita {
     private String tratamiento;
     private String estadocita;
 
+    // Datos del doctor para mostrar en la tabla
+    private String apeldoc;
+    private String espedoc;
+
+
     // Constructor vacío
     public Cita() {
     }
@@ -36,6 +41,36 @@ public class Cita {
         this.tratamiento = tratamiento;
         this.estadocita = estadocita;
     }
+
+    // un constructor para insertar
+    // Constructor con todos los campos
+    public Cita(String citadnipac, int citaiddoc,
+                LocalDate fechacita, String horacita,
+                String motivo, String diagnostico,
+                String tratamiento, String estadocita) {
+
+      
+        this.citadnipac = citadnipac;
+        this.citaiddoc = citaiddoc;
+        this.fechacita = fechacita;
+        this.horacita = horacita;
+        this.motivo = motivo;
+        this.diagnostico = diagnostico;
+        this.tratamiento = tratamiento;
+        this.estadocita = estadocita;
+    }
+
+    // modelo para la tabla de citas
+    public Cita(Integer idcita, String apeldoc, String espedoc,
+            LocalDate fechacita, String horacita, String estadocita) {
+        this.idcita = idcita;
+        this.apeldoc = apeldoc;
+        this.espedoc = espedoc;
+        this.fechacita = fechacita;
+        this.horacita = horacita;
+        this.estadocita = estadocita;
+    }
+
 
     // Getters y Setters
 
@@ -109,5 +144,22 @@ public class Cita {
 
     public void setEstadocita(String estadocita) {
         this.estadocita = estadocita;
+    }
+
+    // del doctor para mostrar en la tabla
+    public String getApeldoc() {
+        return apeldoc;
+    }
+
+    public void setApeldoc(String apeldoc) {
+        this.apeldoc = apeldoc;
+    }
+
+    public String getEspedoc() {
+        return espedoc;
+    }
+
+    public void setEspedoc(String espedoc) {
+        this.espedoc = espedoc;
     }
 }

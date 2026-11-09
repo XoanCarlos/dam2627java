@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -16,6 +17,7 @@ import com.clase.modelo.Doctor;
 import com.clase.modelo.Paciente;
 import com.clase.persistencia.CitaDAOMySQL;
 
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,8 +27,10 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TableView;
 
 public class CitasController implements Initializable {
 
@@ -38,6 +42,28 @@ public class CitasController implements Initializable {
 
     @FXML 
     private Label lblCita;
+
+    @FXML 
+    private TableView<Cita> tablaCitas;
+
+     @FXML
+    private TableColumn<Cita, Integer> idcitacol;
+
+    @FXML
+    private TableColumn<Cita, String> apeldoccol;
+
+    @FXML
+    private TableColumn<Cita, String> espedoccol;
+
+    @FXML
+    private TableColumn<Cita, String> fechacitacol;
+
+    @FXML 
+    private TableColumn<Cita, String> horacitacol;
+
+    @FXML 
+    private TableColumn<Cita, String> estadocitacol;
+
 
     @FXML
     private ComboBox<String> horacita;
@@ -53,18 +79,21 @@ public class CitasController implements Initializable {
 
         // Inicialización de la vista de citas
         cargarHorario();
+    if (citadnipac.getText() != null && !citadnipac.getText().isEmpty()) {
+        cargarCitas();
+    }
 
     }
     
     boolean citaexiste = false;
-    
-   
+       
 
     // Recibe el paciente seleccionado
     public void cargarDatosPaciente(Paciente paciente) {
 
         citadnipac.setText(paciente.getDni());
         lblCita.setText("Citas Paciente" + "  " + paciente.getApellidos());
+        cargarCitas();
     }
 
     public void cargarDatosDoctor(Doctor doctor) {
@@ -132,9 +161,10 @@ public class CitasController implements Initializable {
     }
 
 //FUNCION CRUD DE CITAS
- @FXML
+
+    @FXML
     private void guardarCita() {
-        
+   
         String citaiddoctor = citaiddoc.getText();
         String citadnipaciente = citadnipac.getText();
         String citamotivo = motivo.getText();
@@ -150,22 +180,22 @@ public class CitasController implements Initializable {
         }
         String citadiagnostico = diagnostico.getText();
         String citatratamiento = tratamiento.getText();
-      
+        
         // Creamos el objeto Cita
         Cita cita = new Cita(
-                citaiddoctor,
                 citadnipaciente,
-                citamotivo,
-                citafecha, 
+                Integer.parseInt(citaiddoctor),
+                citafecha,
                 citahora,
-                citaestado,
+                citamotivo,
                 citadiagnostico,
-                citatratamiento
-            );  
-         
+                citatratamiento,
+                citaestado
+                    );  
+            
         if (citaexiste) {
             // Si el Doctor ya existe, lo actualizamos en la base de datos
-             // Si el Doctor no existe, lo guardamos en la base de datos
+                // Si el Doctor no existe, lo guardamos en la base de datos
             Alert alert3 = new Alert(Alert.AlertType.CONFIRMATION);
             alert3.setTitle("Aviso");
             alert3.setHeaderText(null);
@@ -187,7 +217,7 @@ public class CitasController implements Initializable {
 
             //buscadocid();
         } else { 
-            
+            System.out.println("Entrando en guardarCita()");
             // Si la Cita no existe, lo guardamos en la base de datos
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Aviso");
@@ -201,14 +231,26 @@ public class CitasController implements Initializable {
                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                 alert2.setTitle("Aviso");
                 alert2.setHeaderText(null);
-                alert2.setContentText("Doctor dado de alta en Base de Datos");
+                alert2.setContentText("Cita Guardada en Base de Datos");
                 alert2.showAndWait();
                 } else{
                     return;
                 }    
-          }  
-        //recargar la tabla con el nuevo Doctor
-        //cargarCitas(); 
+            }  
+        //recargar la tabla con el nuevas Citas
+        cargarCitas(); 
     }
+    // cargar Doctors en la tabla 
+    @FXML
+    private void cargarCitas() { 
+        // Creamos el DAO 
+        CitaDAOMySQL dao = new CitaDAOMySQL(); 
+        // Obtenemos los Doctors de la base de datos 
+        List<Cita> citas = dao.cargarCitaspaciente(citadnipac.getText()); 
+        // Los mostramos en la tabla 
+        System.out.println(citas.size() + " citas cargadas para el paciente " + citadnipac.getText());
+        tablaCitas.getItems().setAll(citas); 
+        tablaCitas.refresh();
+        }
 
  }

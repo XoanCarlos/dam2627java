@@ -184,14 +184,14 @@
          <Insets bottom="20.0" left="50.0" right="10.0" />
       </VBox.margin>
       <children>
-         <TableView maxHeight="455.0" minHeight="400.0" prefHeight="450.0" prefWidth="1029.0" style="-fx-background-color: #FFFFF4; -fx-border-color: #7FE3D6; -fx-border-width: 5px;">
+         <TableView fx:id="tablaCitas" maxHeight="455.0" minHeight="400.0" prefHeight="450.0" prefWidth="1029.0" style="-fx-background-color: #FFFFF4; -fx-border-color: #7FE3D6; -fx-border-width: 5px;">
            <columns>
-             <TableColumn text="ID Cita" />
-               <TableColumn prefWidth="300.0" text="Doctor" />
-               <TableColumn prefWidth="250.0" text="Especialidad" />
-               <TableColumn prefWidth="110.0" style="-fx-alignment: CENTER;" text="Dia" />
-               <TableColumn prefWidth="100.0" style="-fx-alignment: CENTER;" text="Hora" />
-               <TableColumn prefWidth="150.0" style="-fx-alignment: CENTER;" text="Estado" />
+             <TableColumn fx:id="idcitacol" text="ID Cita" />
+               <TableColumn fx:id="apeldoccol" prefWidth="300.0" text="Doctor" />
+               <TableColumn fx:id="espedoccol" prefWidth="250.0" text="Especialidad" />
+               <TableColumn fx:id="fechacitacol" prefWidth="110.0" style="-fx-alignment: CENTER;" text="Dia" />
+               <TableColumn fx:id="horacitacol" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Hora" />
+               <TableColumn fx:id="estadocitacol" prefWidth="150.0" style="-fx-alignment: CENTER;" text="Estado" />
            </columns>
          </TableView>
       </children>
