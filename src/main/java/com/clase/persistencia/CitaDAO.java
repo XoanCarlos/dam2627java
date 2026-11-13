@@ -7,8 +7,7 @@ import java.util.List;
 public interface CitaDAO {
     void guardarCita(Cita cita);
     List<Cita> cargarCitaspaciente(String dnipac);
-    //void eliminarCita(Integer id);
-    //Cita buscaCitaporId (Integer id);
+    void eliminaCita(Integer id);
+    Cita buscaCitaporId (Integer id);
     void modificarCita(Integer id, Cita cita);
-    //List<Cita> cargarcitasEspec(String especita); 
 }

@@ -164,7 +164,7 @@
                <Insets right="20.0" />
             </HBox.margin>
          </Button>
-         <Button fx:id="btndeldoc" mnemonicParsing="false" text="Eliminar" />
+         <Button fx:id="btndeldoc" mnemonicParsing="false" onAction="#eliminaCita" text="Eliminar" />
       </children>
    </HBox>
    <Label fx:id="lblCita" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="1303.0" style="-fx-background-color: #7FE3D6; -fx-text-fill: #800020;" text="CITAS PACIENTE " textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">

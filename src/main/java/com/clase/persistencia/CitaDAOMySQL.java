@@ -84,7 +84,7 @@ public class CitaDAOMySQL implements CitaDAO {
             System.out.println("Error al modificar el cita: " + e.getMessage());
         }
      
-        //cargarCitas(dnipac);
+        cargarCitaspaciente(String.valueOf(cita.getCitadnipac()));
     }
 
     public List<Cita> cargarCitaspaciente(String dnipac) {
@@ -125,5 +125,66 @@ public class CitaDAOMySQL implements CitaDAO {
         }
 
         return citas;
+    }
+
+    public Cita buscaCitaporId(Integer id) {
+        Cita cita = null;
+        String sql = "SELECT c.idcita, c.citadnipac, c.citaiddoc, "
+                + "c.fechacita, c.horacita, c.motivo, "
+                + "c.diagnostico, c.tratamiento, c.estadocita, "
+                + "d.apeldoc, d.espedoc "
+                + "FROM citas c "
+                + "INNER JOIN doctores d ON c.citaiddoc = d.iddoc "
+                + "WHERE c.idcita = ?";
+
+        try (Connection conexion = ConexionMySQL.getConexion();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    cita = new Cita(
+                            rs.getInt("idcita"),
+                            rs.getString("apeldoc"),
+                            rs.getString("espedoc"),
+                            rs.getDate("fechacita").toLocalDate(),
+                            rs.getString("horacita"),
+                            rs.getString("estadocita")
+                    );
+
+                    cita = new Cita(
+                            rs.getInt("idcita"),
+                            rs.getString("apeldoc"),
+                            rs.getString("espedoc"),
+                            rs.getDate("fechacita").toLocalDate(),
+                            rs.getString("horacita"),
+                            rs.getString("estadocita")
+                    );
+
+                            // Añadimos los datos necesarios para editar la cita
+                            cita.setCitadnipac(rs.getString("citadnipac"));
+                            cita.setCitaiddoc(rs.getInt("citaiddoc"));
+                            cita.setMotivo(rs.getString("motivo"));
+                            cita.setDiagnostico(rs.getString("diagnostico"));
+                            cita.setTratamiento(rs.getString("tratamiento"));
+                         }                             
+                            return cita;
+                            }
+                        } catch (SQLException e) {
+                            System.out.println("Error al buscar cita por ID: " + e.getMessage());
+                        }
+
+        return cita;
+    }   
+    public void eliminaCita(Integer id) {
+        String sql = "DELETE FROM citas WHERE idcita = ?";
+
+        try (Connection conexion = ConexionMySQL.getConexion();
+             PreparedStatement ps = conexion.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            System.out.println("Cita eliminada correctamente.");
+        } catch (SQLException e) {
+            System.out.println("Error al eliminar la cita: " + e.getMessage());
+        }
     }
 }

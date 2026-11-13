@@ -17,7 +17,9 @@ import com.clase.modelo.Doctor;
 import com.clase.modelo.Paciente;
 import com.clase.persistencia.CitaDAOMySQL;
 
-
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -76,6 +78,38 @@ public class CitasController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // Configuramos las columnas de la tabla para que muestren los datos de las citas
+
+        idcitacol.setCellValueFactory(
+                data -> new SimpleIntegerProperty(data.getValue().getIdcita()).asObject());
+
+        apeldoccol.setCellValueFactory(
+                data -> new SimpleStringProperty(data.getValue().getApeldoc()));
+
+        espedoccol.setCellValueFactory(
+                data -> new SimpleStringProperty(data.getValue().getEspedoc()));
+
+        fechacitacol.setCellValueFactory(
+                data -> new SimpleObjectProperty<>(data.getValue().getFechacita().toString()));
+
+        horacitacol.setCellValueFactory(
+                data -> new SimpleStringProperty(data.getValue().getHoracita()));
+
+        estadocitacol.setCellValueFactory(
+                data -> new SimpleStringProperty(data.getValue().getEstadocita()));
+
+
+// Carga una cita al seleccionarla en la tabla
+// en el formulario para poder modificarla o eliminarla
+
+tablaCitas.getSelectionModel()
+        .selectedItemProperty()
+        .addListener((observable, anterior, nuevo) -> {
+
+            if (nuevo != null) {
+                cargarCita();
+            }
+        });
 
         // Inicialización de la vista de citas
         cargarHorario();
@@ -86,7 +120,7 @@ public class CitasController implements Initializable {
     }
     
     boolean citaexiste = false;
-       
+    String nuevodni = "";   
 
     // Recibe el paciente seleccionado
     public void cargarDatosPaciente(Paciente paciente) {
@@ -157,14 +191,14 @@ public class CitasController implements Initializable {
         horacita.getSelectionModel().clearSelection();
         fechacita.setValue(null); 
         diagnostico.setText(null);
-        tratamiento.setText(null);       
+        tratamiento.setText(null);
+        tablaCitas.getItems().clear();       
     }
 
 //FUNCION CRUD DE CITAS
 
     @FXML
-    private void guardarCita() {
-   
+    private void guardarCita() {  
         String citaiddoctor = citaiddoc.getText();
         String citadnipaciente = citadnipac.getText();
         String citamotivo = motivo.getText();
@@ -243,14 +277,68 @@ public class CitasController implements Initializable {
     // cargar Doctors en la tabla 
     @FXML
     private void cargarCitas() { 
-        // Creamos el DAO 
+        nuevodni = citadnipac.getText();
+        limpiaForm();
+        citadnipac.setText(nuevodni);
+        tablaCitas.getItems().clear();
         CitaDAOMySQL dao = new CitaDAOMySQL(); 
         // Obtenemos los Doctors de la base de datos 
-        List<Cita> citas = dao.cargarCitaspaciente(citadnipac.getText()); 
+        List<Cita> citas = dao.cargarCitaspaciente(String.valueOf(nuevodni)); 
+        System.out.println(citas);
         // Los mostramos en la tabla 
         System.out.println(citas.size() + " citas cargadas para el paciente " + citadnipac.getText());
         tablaCitas.getItems().setAll(citas); 
         tablaCitas.refresh();
         }
 
+    @FXML
+    private void cargarCita() {
+        Cita citaSeleccionada = tablaCitas.getSelectionModel().getSelectedItem();
+        citaSeleccionada = new CitaDAOMySQL().buscaCitaporId(citaSeleccionada.getIdcita());
+        if (citaSeleccionada != null) {
+            idcita.setText(String.valueOf(citaSeleccionada.getIdcita()));
+            citaiddoc.setText(String.valueOf(citaSeleccionada.getCitaiddoc()));
+            citadnipac.setText(citaSeleccionada.getCitadnipac());
+            motivo.setText(citaSeleccionada.getMotivo());
+            fechacita.setValue(citaSeleccionada.getFechacita());
+            horacita.setValue(citaSeleccionada.getHoracita());
+            diagnostico.setText(citaSeleccionada.getDiagnostico());
+            tratamiento.setText(citaSeleccionada.getTratamiento());
+
+            // Establecer el estado de la cita en los CheckBoxes
+            String estado = citaSeleccionada.getEstadocita();
+            chkatendida.setSelected("atendida".equals(estado));
+            chkpendiente.setSelected("pendiente".equals(estado));
+            chkanulada.setSelected("anulada".equals(estado));
+
+            citaexiste = true; // Marcamos que la cita existe para futuras modificaciones
+
+        }
+    }
+    public void eliminaCita() {
+        Cita citaSeleccionada = tablaCitas.getSelectionModel().getSelectedItem();
+        if (citaSeleccionada != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmación");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Está seguro de que desea eliminar la cita seleccionada?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                CitaDAOMySQL dao = new CitaDAOMySQL();
+                dao.eliminaCita(citaSeleccionada.getIdcita());
+                cargarCitas(); // Recargamos la tabla después de eliminar
+                Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+                infoAlert.setTitle("Información");
+                infoAlert.setHeaderText(null);
+                infoAlert.setContentText("Cita eliminada correctamente.");
+                infoAlert.showAndWait();
+            }
+        } else {
+            Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
+            infoAlert.setTitle("Información");
+            infoAlert.setHeaderText(null);
+            infoAlert.setContentText("Por favor, seleccione una cita para eliminar.");
+            infoAlert.showAndWait();
+        }
+    }
  }
