@@ -9,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
+import com.clase.informes.imprimirPacientes;
 
 public class VentanaController {
     @FXML
@@ -20,17 +20,23 @@ public class VentanaController {
 
     @FXML
     private CitasController panelCitasController;
-  
 
-    //conecta ventana principal con los otros controles
+   
     @FXML
     public void initialize() {
         
         //para acceder desde pacientes y doctores al panel de citas
         panelPacientesController.setCitasController(panelCitasController);
         panelDoctoresController.setCitasController(panelCitasController);
+
     }
 
+        @FXML
+    private void informePacientes() {
+        System.out.println("PULSADO INFORME PACIENTES");
+        imprimirPacientes.mostrar();    
+    
+    }
 
     @FXML
     private void salirApp() {

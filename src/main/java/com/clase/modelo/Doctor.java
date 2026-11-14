@@ -41,7 +41,7 @@ public class Doctor {
             String movildoc, String espedoc) {
 
         this.iddoc = iddoc;
-        this.apeldoc = apeldoc;
+        this.apeldoc = apeldoc; 
         this.nomdoc = nomdoc;
         this.movildoc = movildoc;
         this.espedoc = espedoc;

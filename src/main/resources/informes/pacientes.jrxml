@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pacientes" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a5417f27-17de-4dfa-bec2-c7590f023059">
 	<queryString>
-		<![CDATA[]]>
+		<![CDATA[SELECT dnipac, apelpac, nompac, movilpac
+			FROM pacientes
+			ORDER BY apelpac, nompac]]>
 	</queryString>
+	<field name="dnipac" class="java.lang.String"/>
+	<field name="apelpac" class="java.lang.String"/>
+	<field name="nompac" class="java.lang.String"/>
+	<field name="movilpac" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -11,7 +17,7 @@
 		<band height="81" splitType="Stretch">
 			<image>
 				<reportElement x="52" y="0" width="50" height="50" uuid="4bcc7c6a-fe8e-4697-b75d-59a1fe7ab916"/>
-				<imageExpression><![CDATA["C:/Users/jcarlos/dam2627java/src/main/resources/img/salud.png"]]></imageExpression>
+				<imageExpression><![CDATA["img/salud.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="50" y="50" width="65" height="21" uuid="964d3c52-bb4b-48c3-ae56-1c89d9200b08"/>
@@ -84,14 +90,14 @@
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{dnipac}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="115" y="2" width="145" height="20" uuid="100e2b0d-298b-4aa1-9a55-731b0216feee">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{apelpac}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="270" y="2" width="150" height="20" uuid="5f89a180-2468-4b00-924d-568c39c29972">
@@ -99,7 +105,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nompac}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="433" y="2" width="100" height="20" uuid="4ff26fc0-1e49-49b3-bc0a-c73de277db14">
@@ -107,7 +113,7 @@
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{movilpac}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
