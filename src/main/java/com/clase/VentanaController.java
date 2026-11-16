@@ -31,11 +31,10 @@ public class VentanaController {
 
     }
 
-        @FXML
+    @FXML
     private void informePacientes() {
         System.out.println("PULSADO INFORME PACIENTES");
         imprimirPacientes.mostrar();    
-    
     }
 
     @FXML
