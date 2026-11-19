@@ -55,9 +55,9 @@ public class CitaDAOMySQL implements CitaDAO {
                 + "fechacita = ?, "
                 + "horacita = ?, "
                 + "motivo = ?, "
-                + "diagnostico = ? "
-                + "tratamiento = ? "
-                + "estadocita = ? "
+                + "diagnostico = ?, "
+                + "tratamiento = ?, "
+                + "estadocita = ?"
                 + "WHERE idcita= ?";
        
 

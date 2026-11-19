@@ -65,6 +65,7 @@ public class PacientesController implements Initializable {
     private TableColumn<Paciente, String> colmunipac;
 
     boolean pacienteexiste = false;
+    private boolean emailValido = true;
 
     // referencia al controlador de citas para poder enviarle el paciente seleccionado
     private CitasController citasController;
@@ -119,8 +120,16 @@ public class PacientesController implements Initializable {
         movilpac.focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue) {
                 comprobarMovil();
-            }
+            } 
         });
+
+        emailpac.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue) {
+                    if (!validarEmail()) {
+                        emailpac.requestFocus();
+                    }
+                }
+            });
 
         //carga un paciente al seleccionarlo en la tabla 
         //en el formulario para poder modificarlo o eliminarlo
@@ -150,7 +159,35 @@ public class PacientesController implements Initializable {
     public void setCitasController(CitasController controller){
         this.citasController = controller;
     } 
-    
+
+    private boolean validarEmail() {
+
+        String email = emailpac.getText().trim();
+              // Expresión regular para validar el email
+        String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+
+        emailValido = email.matches(regex);
+
+            // Vacío = válido (campo opcional)
+            if (email.isEmpty()) {
+                emailValido = true;
+                return true;
+            }
+            else{
+                 if (emailValido) {
+                    return true;
+                 }else{
+                emailpac.setStyle("-fx-border-color: red;");
+                emailpac.setText("Email no válido");
+            }
+        }
+
+      
+
+            return emailValido;
+        }
+
+
     @FXML
     private void comprobarDni() {
         String dni = dnipac.getText().trim().toUpperCase();
@@ -162,7 +199,7 @@ public class PacientesController implements Initializable {
             dnipac.setText(dni);
         } else {
             dnipac.setStyle("-fx-border-color: red;");
-            dnipac.setText("");
+            dnipac.setText("Mal Formato DNI/NIE");
         }
     }
 
@@ -218,11 +255,14 @@ public class PacientesController implements Initializable {
             movilpac.setText(movil);
         } else {
             movilpac.setStyle("-fx-border-color: red;");
-            movilpac.setText("");
+            movilpac.setText("Movil no válido");
         }
     }
 
     private boolean validarMovil(String telefono) {
+        if (telefono.length() != 9) {
+            return false;
+        }
         return telefono.matches("[67][0-9]{8}");
     }
 

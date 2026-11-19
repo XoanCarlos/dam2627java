@@ -62,6 +62,7 @@
         private TableColumn<Doctor, String> colespedoc;
 
         boolean doctorexiste = false;
+        boolean emailValido = true;
 
         // referencia al controlador de citas para poder enviarle el doctor seleccionado
         private CitasController citasController;
@@ -97,18 +98,27 @@
                 }
             });
 
-        apeldoc.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) {
-                String nombre = letrasCapitales(apeldoc.getText());
-                apeldoc.setText(nombre);
-            }
-        });
+            apeldoc.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue) {
+                    String nombre = letrasCapitales(apeldoc.getText());
+                    apeldoc.setText(nombre);
+                }
+            });
 
-        movildoc.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue) {
-                comprobarMovil();
-            }
-        });
+            movildoc.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue) {
+                    comprobarMovil();
+                }
+            });
+
+
+            emaildoc.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue) {
+                    if (!validarEmail()) {
+                        emaildoc.requestFocus();
+                    }
+                }
+            });
 
         //carga un Doctor al seleccionarlo en la tabla 
         // en el formulario para poder modificarlo o eliminarlo
@@ -153,6 +163,33 @@
         return resultado.toString().trim();
     }
 
+    // validar email
+    private boolean validarEmail() {
+
+        String email = emaildoc.getText().trim();
+        // Expresión regular para validar el email
+        String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+
+        emailValido = email.matches(regex);
+          
+            // Vacío = válido (campo opcional)
+            if (email.isEmpty()) {
+                emailValido = true;
+                return true;
+            }
+            else{
+                 if (emailValido) {
+                    return true;
+                 }else{
+                emaildoc.setStyle("-fx-border-color: red;");
+                emaildoc.setText("Email no válido");
+                emaildoc.setStyle("-fx-border-color: red;");
+                emaildoc.setText("Email no válido");
+            }
+        }
+        return emailValido;
+        }
+
     /// validar movil
     @FXML
     private void comprobarMovil() {
@@ -165,7 +202,7 @@
             movildoc.setText(movil);
         } else {
             movildoc.setStyle("-fx-border-color: red;");
-            movildoc.setText("");
+            movildoc.setText("Móvil No válido");
         }
     }
 
