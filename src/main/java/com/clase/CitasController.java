@@ -206,11 +206,11 @@ tablaCitas.getSelectionModel()
         String citahora = horacita.getValue();
         String citaestado = "";
         if (chkpendiente.isSelected()) {
-            citaestado = "pendiente";
+            citaestado = "Pendiente";
         } else if (chkanulada.isSelected()) {
-            citaestado = "anulada";
+            citaestado = "Anulada";
         } else if (chkatendida.isSelected()) {
-            citaestado = "atendida";
+            citaestado = "Atendida";
         }
         String citadiagnostico = diagnostico.getText();
         String citatratamiento = tratamiento.getText();
@@ -307,9 +307,9 @@ tablaCitas.getSelectionModel()
 
             // Establecer el estado de la cita en los CheckBoxes
             String estado = citaSeleccionada.getEstadocita();
-            chkatendida.setSelected("atendida".equals(estado));
-            chkpendiente.setSelected("pendiente".equals(estado));
-            chkanulada.setSelected("anulada".equals(estado));
+            chkatendida.setSelected("Atendida".equals(estado));
+            chkpendiente.setSelected("Pendiente".equals(estado));
+            chkanulada.setSelected("Anulada".equals(estado));
 
             citaexiste = true; // Marcamos que la cita existe para futuras modificaciones
 
